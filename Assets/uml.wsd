@@ -1,0 +1,20 @@
+@startuml
+
+class GameManager {
+    +InputHandler
+}
+
+GameManager --> PlayerStateMachine
+PlayerStateMachine --> State
+State <|-- IdleState
+State <|-- MoveState
+State <|-- AttackState
+
+interface State {
+    +void Enter()
+    +void HandleInput(PlayerInput input)
+    +void Update()
+    +void Exit()
+}
+
+@enduml
