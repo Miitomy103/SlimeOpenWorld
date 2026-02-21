@@ -67,6 +67,11 @@ public class HumanMove : IState<HumanHost>
         {
             owner.stateMachine.ChangeState(owner.HumanAttack);
         }
+        if (input.Jump.onDown)
+        {
+            owner.stateMachine.ChangeState(owner.HumanJump);
+            return;
+        }
     }
     public void DoExit(HumanHost owner) { }
     public enum MoveState

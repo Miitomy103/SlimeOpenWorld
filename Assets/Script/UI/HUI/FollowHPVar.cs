@@ -62,6 +62,7 @@ public class FollowHPVar : PoolObject,ISlider
 
     public void SetValue(float value, float maxValue)
     {
+        if(gameObject.activeInHierarchy == false) return;
         StartCoroutine(SliderSetValueSmooth(value, maxValue));
     }
     IEnumerator SliderSetValueSmooth(float value, float maxValue)

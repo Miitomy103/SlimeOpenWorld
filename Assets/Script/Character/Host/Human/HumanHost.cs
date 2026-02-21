@@ -7,6 +7,8 @@ public class HumanHost : HostBase
 {
     public StateMachine<HumanHost> stateMachine;
 
+    [SerializeField] PossessHuman possessHuman;
+
     public Animator animator { get; private set; }
 
     [SerializeField] HumanMove humanMove;
@@ -18,6 +20,8 @@ public class HumanHost : HostBase
     [SerializeField] HumanAttack humanAttack;
     public HumanAttack HumanAttack => humanAttack;
     [SerializeField] HumanDashAttack humanDashAttack;
+    public HumanJump humanJump;
+    public HumanJump HumanJump => humanJump;
     public HumanDashAttack HumanDashAttack => humanDashAttack;
 
     public Vector3 currentVelocity = Vector3.zero;
@@ -49,7 +53,10 @@ public class HumanHost : HostBase
     public override void EndHost()
     {
         base.EndHost();
+
+        if (possessHuman != null) Instantiate(possessHuman, transform.position, transform.rotation);
         gameObject.SetActive(false);
+
     }
     public override void UpdateHost()
     {
@@ -76,11 +83,14 @@ public class HumanHost : HostBase
         Vector3 targetVelocity = targetDir * targetSpeed * inputMag;
         currentVelocity = Vector3.SmoothDamp(currentVelocity, targetVelocity, ref velocityRef, smoothTime);
 
-        // 実際に移動
-        controller.Move(currentVelocity * Time.deltaTime);
+        if (controller.enabled && controller.gameObject.activeInHierarchy)
+        {
+            // 実際に移動
+            controller.Move(currentVelocity * Time.deltaTime);
+        }
 
-        // スムーズな回転
-        if (targetDir.sqrMagnitude > 0.001f)
+            // スムーズな回転
+            if (targetDir.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(targetDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);

@@ -23,6 +23,10 @@ public class QuestManager : MonoBehaviour
     public event Action<Quest, Objective> OnObjectiveUpdated;
     public event Action OnQuestsUpdated;
 
+    //クエスト必要数管理
+    private Dictionary<string, int> killCounts = new Dictionary<string, int>();
+    private Dictionary<string, int> interactCounts = new Dictionary<string, int>();
+
     [Header("設定")]
     [SerializeField] private bool loadQuestsOnStart = true;
     [SerializeField] private string questResourcePath = "Quests";
@@ -44,6 +48,16 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OnQuestStarted += (quest) => Debug.Log($"[Event] Quest Started: {quest.data.questName}");
+        OnQuestCompleted += (quest) => Debug.Log($"[Event] Quest Completed: {quest.data.questName}");
+        OnQuestFailed += (quest) => Debug.Log($"[Event] Quest Failed: {quest.data.questName}");
+        OnObjectiveUpdated += (quest, objective) => Debug.Log($"[Event] Objective Updated: {objective.data.description})");
+        OnQuestsUpdated += () => Debug.Log($"[Event] Quests Updated: {activeQuests.Count} active, {completedQuestIDs.Count} completed, {availableQuests.Count} available");
+        StartQuest("quest_001");
+
+    }
     private void Initialize()
     {
         if (loadQuestsOnStart)
@@ -52,12 +66,6 @@ public class QuestManager : MonoBehaviour
         }
 
         SubscribeToGameEvents();
-    }
-
-    private void Start()
-    {
-        //Debug
-        StartQuest("quest_001");
     }
     private void Update()
     {
@@ -305,7 +313,12 @@ public class QuestManager : MonoBehaviour
 
     private void HandleEnemyKilled(string enemyID)
     {
-        UpdateQuestProgress(ObjectiveType.Kill, enemyID, 1);
+        if(!killCounts.ContainsKey(enemyID))
+        {
+            killCounts[enemyID] = 0;
+        }
+        killCounts[enemyID]++;
+        UpdateQuestProgress(ObjectiveType.Kill, enemyID, killCounts[enemyID]);
     }
 
     private void HandleItemCollected(string itemID, int amount)
@@ -325,7 +338,12 @@ public class QuestManager : MonoBehaviour
 
     private void HandleObjectInteraction(string objectID)
     {
-        UpdateQuestProgress(ObjectiveType.Interact, objectID, 1);
+        if(!interactCounts.ContainsKey(objectID))
+        {
+            interactCounts[objectID] = 0;
+        }
+        interactCounts[objectID]++;
+        UpdateQuestProgress(ObjectiveType.Interact, objectID, interactCounts[objectID]);
     }
 
     private void HandlePossessChanged(string hostedID)
@@ -451,6 +469,7 @@ public class QuestManager : MonoBehaviour
     // セーブ・ロード
     // ================================================================================
 
+
     public QuestSaveData GetSaveData()
     {
         QuestSaveData saveData = new QuestSaveData
@@ -552,6 +571,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Reset All Quests")]
     public void ResetAllQuests()
     {
         activeQuests.Clear();

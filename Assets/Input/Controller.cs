@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
         inputActions.Player.Move.performed += OnMovePerformed;
     }
 
-    private void OnMovePerformed(InputAction.CallbackContext context)
+    private void OnMovePerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         Vector2 movement = context.ReadValue<Vector2>();
         Debug.Log("Movement Input: " + movement);

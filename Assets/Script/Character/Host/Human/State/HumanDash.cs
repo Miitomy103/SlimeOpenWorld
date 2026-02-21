@@ -31,6 +31,11 @@ public class HumanDash : IState<HumanHost>
             owner.stateMachine.ChangeState(owner.HumanDashAttack);
             return;
         }
+        if (input.Jump.onDown)
+        {
+            owner.stateMachine.ChangeState(owner.HumanJump);
+            return;
+        }
 
         Vector3 moveInput = new Vector3(input.Horizontal, 0, input.Vertical);
 

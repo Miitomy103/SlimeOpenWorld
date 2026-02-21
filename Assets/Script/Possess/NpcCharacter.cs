@@ -11,6 +11,9 @@ public class NpcCharacter : MonoBehaviour,IInteractable
 
     public string GetInteractText => npcID;
 
+    [SerializeField] private string interactableID;
+    public string InteractableID => interactableID;
+
     private void Start()
     {
         UpdateQuestMarker();

@@ -30,9 +30,7 @@ public class SlimeHost : HostBase
 
     PossessRange possessRange;
 
-    [SerializeField] FollowUI followUI;
-
-    [SerializeField] PlayerController playerController;
+    FollowUI followUI;
 
     [SerializeField] CameraPivotRotator cameraPivotRotator;
     public IRotatePivot RotatePivot => cameraPivotRotator;
@@ -42,7 +40,8 @@ public class SlimeHost : HostBase
     [SerializeField,ReadOnly] string currentState;
 
     [SerializeField] DetectRange detectRange;
-
+    [SerializeField] ProjectileLauncher projectileLauncherPrefab;
+    ProjectileLauncher projectileLauncher;
 
 
     protected override void Awake()
@@ -54,6 +53,14 @@ public class SlimeHost : HostBase
         rotator = new Rotator(transform);
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        projectileLauncher = Instantiate(projectileLauncherPrefab, transform.position, Quaternion.identity);
+
+        detectRange.Initialize(Camera.main.transform, Camera.main.transform);
+        followUI = FollowUI.Instance;
+    }
     public override void StartHost(HostBase ago)
     {
 
@@ -81,9 +88,11 @@ public class SlimeHost : HostBase
         if (IsAiming&&RotatePivot!=null) RotatePivot.RotatePivot(Input.Axis, defaultAimSpeed);
     }
 
+    IPossess possessTarget;
     void Possess()
     {
         IPossess[] possessTargets = detectRange.DetectComponents<IPossess>();
+        if (possessTargets == null) return;
         IPossess possessTarget=null;
 
         for (int i = 0; i < possessTargets.Length; i++)
@@ -98,7 +107,8 @@ public class SlimeHost : HostBase
                 
         Transform t = possessTarget != null ? possessTarget.Transform : null;
 
-        followUI?.UIUpdate(t);
+        if(followUI != null)
+            followUI.UIUpdate(t);
 
         if (possessTarget == null) return;
 
@@ -106,18 +116,31 @@ public class SlimeHost : HostBase
 
         if (input.Button3.onDown)
         {
-            playerController.SetHost(possessTarget.GetHost(),this);
-            GameEvents.PossessionChanged(possessTarget.PossessId);
-
-            followUI?.UIUpdate(null);
-
+            this.possessTarget = possessTarget;
+            projectileLauncher.gameObject.SetActive(true);
+            projectileLauncher.transform.position = transform.position;
+            projectileLauncher.Jump(possessTarget.Transform, () => Possession());
+            Time.timeScale = 0f;
+            Debug.Log("Time0");
+            CameraManager.Instance.SetFollow(projectileLauncher.transform);
             gameObject.SetActive(false);
         }
+    }
+    private void Possession()
+    {
+        Time.timeScale = 1f;
+        projectileLauncher.gameObject.SetActive(false);
+        PlayerController.Instance.SetHost(possessTarget.GetHost(), this);
+        GameEvents.PossessionChanged(possessTarget.PossessId);
+
+        followUI.UIUpdate(null);
+
+        gameObject.SetActive(false);
     }
     public override void EndHost()
     {
         base.EndHost();
-        stateMachine.CurrentState.DoExit(this);
+        if(stateMachine!=null) stateMachine.CurrentState.DoExit(this);
     }
 
     private void OnDrawGizmosSelected()
@@ -126,6 +149,11 @@ public class SlimeHost : HostBase
         {
             detectRange.OnDrawGizmos();
         }
+    }
+
+    private void OnDestroy()
+    {
+        detectRange=null;
     }
 }
 

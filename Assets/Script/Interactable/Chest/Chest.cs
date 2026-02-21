@@ -10,6 +10,9 @@ public class Chest : MonoBehaviour,IInteractable
     public bool CanInteract => canInteract;
     public string GetInteractText => "開く";
 
+    [SerializeField] private string interactableID;
+    public string InteractableID => interactableID;
+
     [SerializeField] Animator animator;
 
     private void Awake()
@@ -21,6 +24,7 @@ public class Chest : MonoBehaviour,IInteractable
         Debug.Log("チェストを開けた！");
         animator.SetTrigger("Open");
         canInteract = false;
+        GameEvents.ObjectInteracted(interactableID);
     }
     public void OpenChest()
     {

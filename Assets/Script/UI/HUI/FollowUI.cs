@@ -4,11 +4,16 @@ using UnityEngine.UI;
 
 public class FollowUI : MonoBehaviour
 {
+    static public FollowUI Instance { get; private set; }
     public Transform target;  // 追従する対象
     [SerializeField] Vector3 offset = Vector3.up * 2f;  // オフセット（頭上など）
     [SerializeField] RectTransform rectTransform;
     Camera mainCam;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         if(rectTransform==null) rectTransform = GetComponent<RectTransform>();

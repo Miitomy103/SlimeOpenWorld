@@ -34,7 +34,7 @@ public struct InputButton
         onButton = Input.GetButton(buttonName);
         onUp = Input.GetButtonUp(buttonName);
     }
-    public InputButton(InputAction action)
+    public InputButton(UnityEngine.InputSystem.InputAction action)
     {
         onDown = action.WasPressedThisFrame();
         onButton = action.IsPressed();

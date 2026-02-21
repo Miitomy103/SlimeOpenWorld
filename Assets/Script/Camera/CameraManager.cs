@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] CinemachineCamera virtualCamera;
 
-    //Forrow
+    //Follow
     [SerializeField] CinemachineFollow follow;
 
     [SerializeField,Range(followMaxOffset,followMinOffset)] float followOffset = 7.5f;
@@ -24,6 +24,7 @@ public class CameraManager : MonoBehaviour
         follow = f as CinemachineFollow;
         SetOffset(followOffset);
     }
+#if UNITY_EDITOR
     private void OnValidate()
     {
         if (UnityEditor.EditorApplication.isPlaying)
@@ -31,10 +32,11 @@ public class CameraManager : MonoBehaviour
             SetOffset(followOffset);
         }
     }
+#endif
 
     private void Update()
     {
-        if(Input.mouseScrollDelta.y != 0)
+        if(Input.mouseScrollDelta.y != 0||!InputData.Instance.IsUsingUI)
         {
             followOffset -= Input.mouseScrollDelta.y;
             SetOffset(followOffset);
@@ -45,6 +47,15 @@ public class CameraManager : MonoBehaviour
     public void SetFollow(Transform target)
     {
         virtualCamera.Follow = target;
+    }
+
+    public void SetCinemachine(CinemachineCamera cinemachineCamera)
+    {
+        virtualCamera.gameObject.SetActive(false);
+        Transform follow= virtualCamera.Follow;
+        virtualCamera = cinemachineCamera;
+        virtualCamera.gameObject.SetActive(true);
+        SetFollow(follow);
     }
 
     public void SetOffset(float value)

@@ -30,5 +30,10 @@ public class HumanIdle : IState<HumanHost>
             owner.stateMachine.ChangeState(owner.HumanAttack);
             return;
         }
+        if (input.Jump.onDown)
+        {
+            owner.stateMachine.ChangeState(owner.HumanJump);
+            return;
+        }
     }
 }

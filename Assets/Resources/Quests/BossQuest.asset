@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ee432359b682d4c887024107daaa97, type: 3}
+  m_Name: BossQuest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questID: quest_003
+  questName: "\u30DC\u30B9\u3092\u5012\u305D\u3046"
+  description: "\u30DC\u30B9\u3092\u5012\u3057\u3066\u4E16\u754C\u3092\u5E73\u548C\u306B"
+  questIcon: {fileID: 0}
+  requiredLevel: 1
+  questGiverID: 
+  prerequisiteQuestIDs: []
+  objectives:
+  - type: 7
+    targetID: BossSkull
+    requiredAmount: 1
+    description: "\u9AA8\u306B\u4E57\u3063\u53D6\u308D\u3046(HP\u3092\u524A\u3063\u3066T)"
+    isOptional: 0
+  - type: 0
+    targetID: Boss
+    requiredAmount: 1
+    description: "\u30DC\u30B9\u3092\u5012\u3057\u304D\u308D\u3046"
+    isOptional: 0
+  reward:
+    experience: 0
+    gold: 0
+    items: []
+  isRepeatable: 0
+  timeLimit: 0

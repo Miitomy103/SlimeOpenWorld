@@ -21,6 +21,9 @@ public class SkullPossess : PossessBase,IEnemy
 
     public bool isDead => currentHp<=0;
 
+    [SerializeField] private string enemyID = "DefaultEnemy";
+    public string EnemyId =>enemyID;
+
     [SerializeField]float moveSpeed = 5f;
     [SerializeField]float moveTime = 5f;
     float time;

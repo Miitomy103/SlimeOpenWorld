@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62723ad52f38494479a0bc9ee190e7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkullPossess
+  possessId: BossSkull
+  hostPrefab: {fileID: 0}
   maxHp: 100
   currentHp: 0
   parsent: 30

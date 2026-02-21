@@ -37,7 +37,7 @@ public class Movement
             //);
 
 
-            if (controller != null)
+            if (controller != null&& controller.gameObject.activeInHierarchy)
             {
                 // 重力を考慮（必要なら）
                 velocity.y += Physics.gravity.y * Time.deltaTime;

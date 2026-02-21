@@ -3,9 +3,10 @@ using UnityEngine;
 using InGame;
 
 [System.Serializable]
-public class HumanAttack : IState<HumanHost>,ICanBool
+public class HumanAttack : IState<HumanHost>, ICanBool
 {
     [SerializeField] WeaponBase weaponBase;
+    [SerializeField] float trackingDistance = 5f;
     AnimatorStateData humanAttack;
 
     int attackCount = 0;
@@ -45,9 +46,22 @@ public class HumanAttack : IState<HumanHost>,ICanBool
 
     public void DoStart(HumanHost owner)
     {
+        EnemyBase enemy = DetectEnemy(owner.transform.position);
+
+        if (enemy != null)
+        {
+            Vector3 direction = (enemy.transform.position - owner.transform.position).normalized;
+            direction.y = 0; // Keep only horizontal direction
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                owner.transform.rotation = lookRotation;
+            }
+        }
+
         attackCoroutines = new IAttackCoroutine[]
         {
-            new AnimAttackAcyncFrame(14,27-14,30,1.5f,null,()=>IsComboInput=true),
+            new AnimAttackAcyncFrame(14,27-14,30,1.5f),
         };
 
         attackCount = 0;
@@ -58,15 +72,27 @@ public class HumanAttack : IState<HumanHost>,ICanBool
         waitAttack = false;
 
     }
-
+    EnemyBase DetectEnemy(Vector3 position)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(position, trackingDistance);
+        foreach (var hitCollider in hitColliders)
+        {
+            EnemyBase enemy = hitCollider.GetComponent<EnemyBase>();
+            if (enemy != null)
+            {
+                return enemy;
+            }
+        }
+        return null;
+    }
     public void DoUpdate(HumanHost owner)
     {
-        if (isAttack&&IsComboInput)
+        if (isAttack && IsComboInput)
         {
             PlayerInput input = InputData.Instance.InputAction();
             Debug.Log("Waiting for Attack Input");
 
-            if (input.Action0.onDown) 
+            if (input.Action0.onDown)
             {
                 Debug.Log("Attack Input Received");
                 waitAttack = true;
@@ -81,7 +107,7 @@ public class HumanAttack : IState<HumanHost>,ICanBool
     {
         await UniTask.NextFrame();
 
-        if(humanAttack != null && humanAttack.state != null)
+        if (humanAttack != null && humanAttack.state != null)
         {
             humanAttack.state.OnAttackEnd = null;
         }
@@ -95,7 +121,7 @@ public class HumanAttack : IState<HumanHost>,ICanBool
         await UniTask.NextFrame();
         waitAttack = false;
         //owner.animator.SetBool("IsAttack",false);
-        if(attackCount < attackCoroutines.Length) isAttack = true;
+        if (attackCount < attackCoroutines.Length) isAttack = true;
         attackCount++;
     }
 
@@ -120,9 +146,9 @@ public class HumanAttack : IState<HumanHost>,ICanBool
         waitAttack = false;
         //owner.animator.SetBool("IsAttack", false);
 
-            if (owner.IsMoveInput)
-                owner.stateMachine.ChangeState(owner.HumanMove);
-            else
-                owner.stateMachine.ChangeState(owner.HumanIdle);
+        if (owner.IsMoveInput)
+            owner.stateMachine.ChangeState(owner.HumanMove);
+        else
+            owner.stateMachine.ChangeState(owner.HumanIdle);
     }
 }

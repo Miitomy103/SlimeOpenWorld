@@ -150,20 +150,21 @@ MonoBehaviour:
   isPossessed: 0
   currentHp: 100
   maxHp: 100
+  startHostOffset: {x: 0, y: 10, z: 0}
   slimeMove:
     speed: 10
     rotateSpeed: 10
     velocity: {x: 0, y: 0, z: 0}
     rotationCamera: {fileID: 0}
   slimeAim:
-    isAiming: 0
-    normalCamera: {fileID: 0}
-    aimCamera: {fileID: 0}
+    isAiming: 1
     speed: 2
+    rotateSpeed: 10
     aimSpeed: 0.2
+    trackingDistance: 20
     minPitch: -32.5
     maxPitch: 60
-    bulletPrefab: {fileID: 0}
+    bulletPrefab: {fileID: 4159381443126494591, guid: 20b285971df494c43978dc85205cbd67, type: 3}
     fireOffset: {x: 0, y: -0.15, z: 0}
     attackCooldown: 1
     bulletSpeed: 10
@@ -176,8 +177,6 @@ MonoBehaviour:
     detector: {fileID: 3689034614106830927}
     attackData: {fileID: 11400000, guid: 869539e8aece99244ac663b9ab397aae, type: 2}
     isAttack: 0
-  followUI: {fileID: 0}
-  playerController: {fileID: 0}
   cameraPivotRotator: {fileID: 0}
   defaultAimSpeed: 2
   currentState: 
@@ -188,6 +187,7 @@ MonoBehaviour:
     positionTransform: {fileID: 0}
     exclusions: []
     lineColor: {r: 1, g: 0, b: 0, a: 1}
+  projectileLauncherPrefab: {fileID: 2778564574262634853, guid: 1e396ed93ffa07d4e896b53c6fcd529d, type: 3}
 --- !u!114 &8181856557859578445
 MonoBehaviour:
   m_ObjectHideFlags: 0

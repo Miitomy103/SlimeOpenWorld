@@ -5,9 +5,6 @@ using System;
 
 public abstract class HostBase : MonoBehaviour
 {
-
-
-
     [SerializeField] Transform cameraTarget;
 
     public CharacterController controller { get; private set; }
@@ -73,7 +70,10 @@ public abstract class HostBase : MonoBehaviour
     protected virtual void Velocity()
     {
         Vector3 gravity = Physics.gravity * Time.deltaTime;
-        controller.Move(gravity);
+        if (controller != null&&controller.enabled&& gameObject.activeInHierarchy)
+        {
+            controller.Move(gravity);
+        }
     }
 
     public void HostBack()

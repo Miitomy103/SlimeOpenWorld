@@ -44,7 +44,10 @@ public class Move
         // 慣性を持たせて移動速度をスムーズに変化
         currentVelocity = Vector3.SmoothDamp(currentVelocity, moveDir, ref velocityRef, smoothTime);
 
-        // 実際に移動（CharacterController 用）
-        controller.Move(currentVelocity * Time.deltaTime);
+        if (controller.enabled && controller.gameObject.activeInHierarchy)
+        {
+            // 実際に移動（CharacterController 用）
+            controller.Move(currentVelocity * Time.deltaTime);
+        }
     }
 }

@@ -6,4 +6,5 @@ public interface IEnemy:IDamageable
     int CurrentHealth { get; }
     bool isDead { get; }
     void Heel(int amount);
+    string EnemyId { get; }
 }

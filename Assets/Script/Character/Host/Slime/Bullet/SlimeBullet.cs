@@ -34,6 +34,21 @@ public class SlimeBullet : PoolObject
         }
 
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<IDamageable>(out var damagable))
+        {
+            // ダメージを与える
+            damagable.TakeDamage(power);
+            // 他のオブジェクトに衝突したら無効化
+            DoDisable();
+        }
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            // 他のオブジェクトに衝突したら無効化
+            DoDisable();
+        }
+    }
 
     public override void DoDisable()
     {

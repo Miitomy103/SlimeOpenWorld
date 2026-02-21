@@ -23,10 +23,10 @@ public class EnemyHpVarPool : MonoBehaviour
         objectPool = new ObjectPool<FollowHPVar>(varPrefab, 0, parent);
     }
 
-    public GameObject AddTarget(Transform target)
+    public IPoolObject AddTarget(Transform target)
     {
         var hpVar = objectPool.EnableToPoolObject();
         hpVar.SetTarget(target);
-        return hpVar.gameObject;
+        return hpVar;
     }
 }

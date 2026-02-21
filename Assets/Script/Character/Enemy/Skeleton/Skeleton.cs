@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using InGame;
 using System;
 
-public class Skeleton : EnemyBase
+public class Skeleton : EnemyBase,IPossess
 {
     public StateMachine<Skeleton> stateMachine { get; private set; }
     public Animator animator { get; private set; }
@@ -23,7 +23,15 @@ public class Skeleton : EnemyBase
     [SerializeField]Move move;
     public Move Move => move;
 
-    GameObject hpvar;
+
+    [Header("Possess")]
+    [SerializeField] HumanHost hostPrefab;
+    [SerializeField] string possessId;
+    public string PossessId => possessId;
+
+    public bool CanPossess => isDead;
+
+    IPoolObject hpvar;
     ISlider hpSlider;
     protected override void Awake()
     {
@@ -54,13 +62,13 @@ public class Skeleton : EnemyBase
             if (hpvar == null)
             {
                 hpvar = EnemyHpVarPool.Instance.AddTarget(transform);
-                hpSlider = hpvar.GetComponent<ISlider>();
+                hpSlider = hpvar as ISlider;
             }
         }
         else
         {
             stateMachine.ChangeState(skeletonIdle);
-            hpvar.SetActive(false);
+            hpvar.DoDisable();
             hpSlider = null;
             hpvar = null;
         }
@@ -81,8 +89,15 @@ public class Skeleton : EnemyBase
     }
     protected override void Die()
     {
-        stateMachine.ChangeState(skeletonDie);
+        stateMachine.ChangeState(SkeletonDie);
+        hpvar.DoDisable();
         Debug.Log("Skeleton Die");
         base.Die();
+    }
+
+    public HostBase GetHost()
+    {
+        gameObject.SetActive(false);
+        return Instantiate(hostPrefab, transform.position, transform.rotation);
     }
 }

@@ -7,4 +7,5 @@ public interface IInteractable
     bool CanInteract { get; }
     string GetInteractText { get; }
     void Interact(GameObject player);
+    string InteractableID { get; }
 }

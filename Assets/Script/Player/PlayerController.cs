@@ -1,21 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     static PlayerController instance;
-
     public static PlayerController Instance => instance;
+
+    [SerializeField] HostBase defaultHostPrefab;
+    [SerializeField] Vector3 defaultPosition;
+    [SerializeField] PossessRange possessRange;
 
 
     [SerializeField] HostBase hostBase;
-    public HostBase HostBase=>hostBase;
-
-    public Action<HostBase> onHostChange { get;set; }
-
-    [SerializeField] PossessRange possessRange;
+    public HostBase HostBase => hostBase;
+    public Action<HostBase> onHostChange { get; set; }
 
     int experience = 0;
     public int Experience => experience;
@@ -26,7 +24,27 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
     }
-    public void SetHost(HostBase newHost,HostBase agoHost)
+
+    private void Start()
+    {
+        //Initialize();
+    }
+
+    // SaveManagerのAwakeより後、かつLoadより前に呼ばれる想定
+    public void Initialize()
+    {
+        // デフォルトホストをインスタンス化して設定
+        HostBase host = Instantiate(defaultHostPrefab);
+        SetHost(host, null);
+        host.transform.position = defaultPosition;
+    }
+
+    private void Update()
+    {
+        hostBase?.UpdateHost();
+    }
+
+    public void SetHost(HostBase newHost, HostBase agoHost)
     {
         if (hostBase != null) hostBase.EndHost();
         hostBase = newHost;
@@ -34,19 +52,34 @@ public class PlayerController : MonoBehaviour
         onHostChange?.Invoke(hostBase);
         possessRange.angleTransform = hostBase.transform;
         possessRange.positionTransform = hostBase.transform;
-
         CameraManager.Instance.SetFollow(hostBase.CameraTarget);
     }
-    private void Start()
+
+    // SaveManagerから呼ばれる
+    public void ApplySaveData(PlayerSaveData data)
     {
-        HostBase host = hostBase;
-        hostBase = null;
-        SetHost(host, null);
+        if (data == null) { Debug.LogError("PlayerSaveData is null"); return; }
+
+        // ホストの復元（SlimeHostはデフォルトのままにする等の判定）
+        string typeName = data.hostName;
+        HostBase prefab = Resources.Load<HostBase>("Hosts/" + typeName);
+        if (prefab != null && prefab is not SlimeHost)
+        {
+            HostBase newHost = Instantiate(prefab);
+            Debug.Log($"Loaded host: {(newHost==null)}");
+            SetHost(newHost, hostBase);
+        }
+        else
+        {
+            Initialize(); // デフォルトホストで初期化
+        }
+        Debug.Log($"Host{hostBase==null}, Position{data.position}, Scene{data.sceneName}");
+        hostBase.transform.position = data.position;
+
+        // シーン遷移はSceneController経由で行う
+        SceneController.Instance.LoadScene(data.sceneName, data.position);
     }
-    private void Update()
-    {
-        hostBase.UpdateHost();
-    }
+
     public void AddExperience(int amount)
     {
         experience += amount;
@@ -57,5 +90,15 @@ public class PlayerController : MonoBehaviour
     {
         gold += amount;
         Debug.Log($"Gold gained: {amount} (Total: {gold})");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        float lineLength = 2f;
+        Gizmos.DrawLine(float.IsNaN(defaultPosition.x) ? transform.position : defaultPosition,
+                        float.IsNaN(defaultPosition.x) ? transform.position + Vector3.forward * lineLength : defaultPosition + Vector3.forward * lineLength);
+        Gizmos.DrawLine(float.IsNaN(defaultPosition.x) ? transform.position : defaultPosition,
+                        float.IsNaN(defaultPosition.x) ? transform.position + Vector3.right * lineLength : defaultPosition + Vector3.right * lineLength);
     }
 }

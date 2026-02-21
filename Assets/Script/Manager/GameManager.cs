@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        Debug.Log(Time.timeScale);
     }
     public void Die()
     {
@@ -58,5 +58,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         dieUI.SetActive(false);
         respawnManager.Respawn();
+    }
+
+    public void GameExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+        Application.Quit();
+#endif
+
     }
 }

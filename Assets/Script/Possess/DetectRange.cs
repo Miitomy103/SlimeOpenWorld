@@ -27,6 +27,12 @@ public class DetectRange : IGizmo
     [SerializeField] Color lineColor = Color.red;
 
 
+    public void Initialize(Transform position, Transform angle)
+    {
+        positionTransform = position;
+        angleTransform = angle;
+    }
+
     /// <summary>
     /// 最も近いオブジェクトを検知する
     /// </summary>
@@ -79,7 +85,7 @@ public class DetectRange : IGizmo
     {
         if (angleTransform == null || positionTransform == null)
         {
-            Debug.LogWarning($"angleTransform または positionTransform が未設定です。");
+            Debug.LogError($"angleTransform または positionTransform が未設定です。");
             return null;
         }
 

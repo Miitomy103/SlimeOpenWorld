@@ -29,40 +29,6 @@ public class InteractTextControl : MonoBehaviour
         interactText.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
-        {
-            interactText.Selected();
-        }
-    }
-
-    //•¡”Text‚ğo‚·ˆ—
-
-    //public void Fire(IInteractable interactable,GameObject player)
-    //{
-    //    if (interactTexts.ContainsKey(interactable))
-    //    {
-    //        Debug.Log("NotContain");
-    //        return; // “ñd“o˜^–h~
-    //    }
-    //    Debug.Log("Fire" + interactable.GetInteractText());
-
-    //    var blt = textPool.EnableToPoolObject();
-    //    interactTexts.Add(interactable, blt);
-    //    blt.SetText(interactable,player);
-    //}
-
-    //public void ExitInteract(IInteractable interactable)
-    //{
-    //    if (!interactTexts.TryGetValue(interactable, out var pool))
-    //        return;
-
-    //    textPool.ReturnToPoolObject(pool);
-    //    pool.gameObject.SetActive(false);
-    //    interactTexts.Remove(interactable);
-    //}
-
     public void EnterInteract(IInteractable interactable, GameObject player)
     {
         if(currentInteractable == interactable) return;

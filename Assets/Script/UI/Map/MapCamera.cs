@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MapCamera : MonoBehaviour
 {
-    [SerializeField]
-    Transform Player;
+    Transform Player => PlayerController.Instance== null ? null : PlayerController.Instance.HostBase.transform;
     // Update is called once per frame
     private void OnValidate()
     {
@@ -16,6 +15,7 @@ public class MapCamera : MonoBehaviour
     }
     void Update()
     {
+        if (Player == null) return;
         gameObject.transform.position=new Vector3(Player.position.x,transform.position.y,Player.transform.position.z);
     }
 }

@@ -1,8 +1,8 @@
 using UnityEngine;
 using InGame;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 
+[System.Serializable]
 public class SkeletonDie : IState<Skeleton>
 {
     public void DoExit(Skeleton owner)
@@ -12,7 +12,7 @@ public class SkeletonDie : IState<Skeleton>
 
     public void DoStart(Skeleton owner)
     {
-        Debug.Log("Skeleton Die");
+        Debug.Log("Skeleton DieStart");
         owner.animator.CrossFadeInFixedTime("Death", 0.1f);
         Coroutine(owner).Forget();
     }
@@ -20,7 +20,6 @@ public class SkeletonDie : IState<Skeleton>
     async UniTask Coroutine(Skeleton owner)
     {
         await UniTask.WaitForSeconds(2.0f);
-        owner.gameObject.SetActive(false);
         owner.OnDie?.Invoke();
 
     }

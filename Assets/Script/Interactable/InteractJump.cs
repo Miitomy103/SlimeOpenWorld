@@ -6,6 +6,8 @@ public class InteractJump : MonoBehaviour, IInteractable
 
     public string GetInteractText => "ƒWƒƒƒ“ƒv";
 
+    public string InteractableID => throw new System.NotImplementedException();
+
     public void Interact(GameObject player)
     {
         var rb = player.GetComponent<Rigidbody>();

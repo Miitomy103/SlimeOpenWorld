@@ -27,9 +27,13 @@ public class SkeletonIdle : IState<Skeleton>
     {
         if(Vector3.Distance(owner.transform.position,owner.defaultPosition)>=0.5f)
         {
-            // プレイヤーに向かって移動
-            owner.agent.isStopped = false;
+            if (owner.agent.isOnNavMesh && owner.agent.isActiveAndEnabled)
+            {
+
+                // プレイヤーに向かって移動
+                owner.agent.isStopped = false;
             owner.agent.SetDestination(owner.defaultPosition);
+            }
         }
         else
         {

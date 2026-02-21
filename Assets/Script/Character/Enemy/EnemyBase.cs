@@ -6,6 +6,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     [SerializeField] int currentHealth;
 
     [SerializeField] string enemyID;
+    public string EnemyId => enemyID;
     public int CurrentHealth => currentHealth;
 
     public bool isDead => currentHealth <= 0;

@@ -2,6 +2,7 @@ using UnityEngine;
 using StateMachine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System;
 
 public class SkullBoss : MonoBehaviour,IIsAutoRotator
 {
@@ -19,6 +20,8 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
     [SerializeField] Slider hpSlider;
 
     Transform playerTransform => PlayerController.Instance.HostBase.transform;
+
+    public Action OnDie { get; set; }
 
     #region State Machine
     /// <summary>
@@ -65,6 +68,12 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
         InitializeStateMachie();
         currentHP = maxHP;
         if (hpSlider != null) hpSlider.maxValue = 1;
+
+        AnimationEventAction animationEventAction = GetComponentInChildren<AnimationEventAction>();
+        if (animationEventAction != null)
+        {
+            animationEventAction.AddEventAction("Death", DieAnimEnd);
+        }
     }
 
     protected virtual void Update()
@@ -130,5 +139,9 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
         stateMachine.Transition(SkullBossDie.key);
         IsAutoRotator = false;
         IsGravity = false;
+    }
+    void DieAnimEnd()
+    {
+        OnDie?.Invoke();
     }
 }
