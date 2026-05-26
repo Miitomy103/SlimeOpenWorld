@@ -30,6 +30,8 @@ public class SlimeAim :IState<SlimeHost>
     ObjectPool<SlimeBullet> objectPool;
     IObjectPool<SlimeBullet> bulletPool => objectPool;
 
+    [SerializeField] UnityEngine.Events.UnityEvent onBulletAttack;
+
     public void DoExit(SlimeHost owner)
     {
 
@@ -89,6 +91,8 @@ public class SlimeAim :IState<SlimeHost>
         Quaternion rot = Quaternion.Euler(pitch, yaw, 0f);
 
         bullet.Fire(pos, rot, bulletSpeed, bulletLifeTime, minPower);
+
+        onBulletAttack?.Invoke();
 
     }
     IEnemy DetectEnemy(SlimeHost owner)

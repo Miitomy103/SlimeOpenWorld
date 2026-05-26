@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     // SaveManagerのAwakeより後、かつLoadより前に呼ばれる想定
     public void Initialize()
     {
+        Debug.Log("ああああああああああああああああ");
         // デフォルトホストをインスタンス化して設定
         HostBase host = Instantiate(defaultHostPrefab);
         SetHost(host, null);
@@ -63,16 +64,17 @@ public class PlayerController : MonoBehaviour
         // ホストの復元（SlimeHostはデフォルトのままにする等の判定）
         string typeName = data.hostName;
         HostBase prefab = Resources.Load<HostBase>("Hosts/" + typeName);
-        if (prefab != null && prefab is not SlimeHost)
-        {
-            HostBase newHost = Instantiate(prefab);
-            Debug.Log($"Loaded host: {(newHost==null)}");
-            SetHost(newHost, hostBase);
-        }
-        else
-        {
-            Initialize(); // デフォルトホストで初期化
-        }
+        //if (prefab != null && prefab is not SlimeHost)
+        //{
+        //    HostBase newHost = Instantiate(prefab);
+        //    Debug.Log($"Loaded host: {(newHost==null)}");
+        //    SetHost(newHost, hostBase);
+        //}
+        //else
+        //{
+        //}
+
+        Initialize(); // デフォルトホストで初期化
         Debug.Log($"Host{hostBase==null}, Position{data.position}, Scene{data.sceneName}");
         hostBase.transform.position = data.position;
 
@@ -92,7 +94,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Gold gained: {amount} (Total: {gold})");
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         float lineLength = 2f;

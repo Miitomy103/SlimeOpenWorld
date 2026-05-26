@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SkullHost : HostBase
 {
@@ -6,6 +7,8 @@ public class SkullHost : HostBase
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotateSpeed = 5f;
     [SerializeField] OverlapBase attackRange;
+
+    [SerializeField] UnityEvent onAttackStart;
 
     bool isAttacking = false;
 
@@ -51,6 +54,7 @@ public class SkullHost : HostBase
         if(boss.Length > 0)
         {
             boss[0].SkullDamage();
+            onAttackStart?.Invoke();
         }
         gameObject.SetActive(false);
     }

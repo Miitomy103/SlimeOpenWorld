@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 using InGame;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class HumanAttack : IState<HumanHost>, ICanBool
@@ -8,6 +9,8 @@ public class HumanAttack : IState<HumanHost>, ICanBool
     [SerializeField] WeaponBase weaponBase;
     [SerializeField] float trackingDistance = 5f;
     AnimatorStateData humanAttack;
+
+    [SerializeField] UnityEvent onAttackStart;
 
     int attackCount = 0;
 
@@ -71,6 +74,7 @@ public class HumanAttack : IState<HumanHost>, ICanBool
         isAttack = false;
         waitAttack = false;
 
+        onAttackStart?.Invoke();
     }
     EnemyBase DetectEnemy(Vector3 position)
     {

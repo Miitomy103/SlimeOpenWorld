@@ -42,7 +42,6 @@ namespace StateMachine
         /// </summary>
         public void InitializeState()
         {
-            Debug.Log("InitializeState" + this.name);
             m_conditionList = CreateCondition();
 
             Initialize();

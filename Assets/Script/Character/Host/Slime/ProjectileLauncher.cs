@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileLauncher : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class ProjectileLauncher : MonoBehaviour
     float timer;
     bool isJumping;
 
+    [SerializeField] UnityEvent onJumpEnd;
+
+    private void OnEnable()
+    {
+            onJumpEnd?.Invoke();
+    }
     void Update()
     {
         if (!isJumping) return;

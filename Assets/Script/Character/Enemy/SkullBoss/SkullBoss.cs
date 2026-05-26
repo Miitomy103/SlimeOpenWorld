@@ -3,6 +3,7 @@ using StateMachine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
 
 public class SkullBoss : MonoBehaviour,IIsAutoRotator
 {
@@ -18,6 +19,8 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
     [Header("Referents")]
     [SerializeField] CharacterController controller;
     [SerializeField] Slider hpSlider;
+
+    [SerializeField] UnityEvent onDamage;
 
     Transform playerTransform => PlayerController.Instance.HostBase.transform;
 
@@ -133,6 +136,7 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
         {
             Die();
         }
+        onDamage?.Invoke();
     }
     public void Die()
     {

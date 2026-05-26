@@ -143,6 +143,9 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 5
   attackRange: {fileID: -6027069631550266546}
+  onAttackStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &5974697227150045467
 CharacterController:
   m_ObjectHideFlags: 0

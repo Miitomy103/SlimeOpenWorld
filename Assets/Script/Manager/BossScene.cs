@@ -16,6 +16,9 @@ public class BossScene : MonoBehaviour
     [SerializeField] Text hpText;
     [SerializeField] Text scoreText;
     [SerializeField] GameObject highScoreUI;
+
+    [SerializeField] GameObject[] clearFalseObjects;
+    [SerializeField] GameObject[] clearTrueObjects;
     private void Start()
     {
         QuestManager.Instance.StartQuest("quest_003");
@@ -35,7 +38,7 @@ public class BossScene : MonoBehaviour
 
     public void OnClear()
     {
-        Canvas[] canvas=GameObject.FindObjectsOfType<Canvas>();
+        Canvas[] canvas = GameObject.FindObjectsOfType<Canvas>();
         foreach (var c in canvas)
         {
             c.gameObject.SetActive(false);
@@ -51,7 +54,7 @@ public class BossScene : MonoBehaviour
 
         timeText.text = $"{minutes:00}:{seconds:00}";
 
-        int totalHp=(int)PlayerController.Instance.HostBase.CurrentHP;
+        int totalHp = (int)PlayerController.Instance.HostBase.CurrentHP;
         hpText.text = $"{totalHp}";
 
         int score = 10000 - (totalSeconds + totalHp);
@@ -70,5 +73,14 @@ public class BossScene : MonoBehaviour
         CameraManager.Instance.SetCinemachine(bossCamera);
 
         InputData.Instance.IsUsingUI = true;
+
+        foreach (var obj in clearFalseObjects)
+        {
+            obj.SetActive(false);
+        }
+        foreach (var obj in clearTrueObjects)
+        {
+            obj.SetActive(true);
+        }
     }
 }

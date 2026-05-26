@@ -2,6 +2,7 @@ using UnityEngine;
 using InGame;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class SlimeAttack : IState<SlimeHost>
@@ -18,6 +19,8 @@ public class SlimeAttack : IState<SlimeHost>
 
     [SerializeField] AnimAttackAcyncFrameSO attackData;
     [SerializeField] bool isAttack;
+
+    [SerializeField] UnityEvent onAttackStart;
     public void DoExit(SlimeHost owner)
     {
 
@@ -50,6 +53,8 @@ public class SlimeAttack : IState<SlimeHost>
         {
             owner.stateMachine.ChangeState(owner.SlimeIdle);
         });
+
+        onAttackStart?.Invoke();
     }
 
     UniTask WaitForAttackEnd()

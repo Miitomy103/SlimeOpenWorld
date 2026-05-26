@@ -6,6 +6,8 @@ public class SceneController : MonoBehaviour
     public Vector3 playerPos { get; private set; }
     public HostBase playerHost { get; private set; }
 
+    public event System.Action OnSceneLoaded;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +28,7 @@ public class SceneController : MonoBehaviour
             return;
         }
 
+        OnSceneLoaded?.Invoke();
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         playerHost = PlayerController.Instance.HostBase;
         DontDestroyOnLoad(playerHost.gameObject);

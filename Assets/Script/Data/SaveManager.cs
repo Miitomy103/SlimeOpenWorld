@@ -7,9 +7,8 @@ public class SaveManager : MonoBehaviour
     SaveObject<PlayerSaveData> playerSaveObject;
     SaveObject<QuestSaveData> questSaveObject;
 
-#if UNITY_EDITOR
     [SerializeField] bool loadOnStart = true;
-#endif
+    [SerializeField] bool isDefaultScene = true;
 
     private void Awake()
     {
@@ -33,17 +32,18 @@ public class SaveManager : MonoBehaviour
         // セーブデータがあれば上書き適用
         PlayerLoad();
         QuestLoad();
+        if(isDefaultScene)
+            SceneController.Instance.OnSceneLoaded += () =>Save();
     }
 
     void PlayerLoad()
     {
-#if UNITY_EDITOR
         if (!loadOnStart)
         {
             Debug.Log("Skipping player load on start (editor setting)");
+            PlayerController.Instance.Initialize();
             return;
         }
-#endif
         playerSaveObject = new SaveObject<PlayerSaveData>("player_save");
         var data = playerSaveObject.Get();
         if (data != null)
