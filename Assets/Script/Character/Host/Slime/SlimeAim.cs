@@ -2,6 +2,9 @@ using UnityEngine;
 using InGame;
 using Unity.Cinemachine;
 
+/// <summary>
+/// スライムが弾を撃つステート
+/// </summary>
 [System.Serializable]
 public class SlimeAim :IState<SlimeHost>
 {

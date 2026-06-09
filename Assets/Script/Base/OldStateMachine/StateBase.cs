@@ -1,0 +1,24 @@
+using InGame;
+using Unity.VisualScripting;
+using UnityEngine;
+
+/// <summary>
+/// ó‘Ô‚ÌŠî’êƒNƒ‰ƒX
+/// </summary>
+public abstract class StateBase : IState<HostBase>
+{
+    public virtual void DoExit(HostBase owner)
+    {
+
+    }
+
+    public virtual void DoStart(HostBase owner)
+    {
+
+    }
+
+    public virtual void DoUpdate(HostBase owner)
+    {
+
+    }
+}

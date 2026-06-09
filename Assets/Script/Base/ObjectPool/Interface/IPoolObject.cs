@@ -1,6 +1,9 @@
 using System;
 
-    public interface IPoolObject
+/// <summary>
+/// このインターフェースとObjectクラスをを実装することで、オブジェクトプールで管理できるようになります。
+/// </summary>
+public interface IPoolObject
     {
         event Func<IPoolObject, bool> DoReturnToPool;
         void DoEnable();

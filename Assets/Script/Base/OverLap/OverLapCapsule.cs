@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// カプセルの形をOverLapで取得するクラス。
+/// </summary>
 public class OverLapCapsule : OverlapBase
 {
     public float radius = 1f;

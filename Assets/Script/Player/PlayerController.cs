@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤー（ホスト）を管理するクラス
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     static PlayerController instance;
@@ -12,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] HostBase hostBase;
+    /// <summary>
+    /// 現在乗っ取っているホスト。
+    /// </summary>
     public HostBase HostBase => hostBase;
     public Action<HostBase> onHostChange { get; set; }
 
@@ -33,7 +39,6 @@ public class PlayerController : MonoBehaviour
     // SaveManagerのAwakeより後、かつLoadより前に呼ばれる想定
     public void Initialize()
     {
-        Debug.Log("ああああああああああああああああ");
         // デフォルトホストをインスタンス化して設定
         HostBase host = Instantiate(defaultHostPrefab);
         SetHost(host, null);
@@ -45,6 +50,9 @@ public class PlayerController : MonoBehaviour
         hostBase?.UpdateHost();
     }
 
+    /// <summary>
+    /// ホストを切り替える。
+    /// </summary>
     public void SetHost(HostBase newHost, HostBase agoHost)
     {
         if (hostBase != null) hostBase.EndHost();
@@ -64,15 +72,18 @@ public class PlayerController : MonoBehaviour
         // ホストの復元（SlimeHostはデフォルトのままにする等の判定）
         string typeName = data.hostName;
         HostBase prefab = Resources.Load<HostBase>("Hosts/" + typeName);
-        //if (prefab != null && prefab is not SlimeHost)
-        //{
-        //    HostBase newHost = Instantiate(prefab);
-        //    Debug.Log($"Loaded host: {(newHost==null)}");
-        //    SetHost(newHost, hostBase);
-        //}
-        //else
-        //{
-        //}
+        if (prefab != null && prefab is not SlimeHost)
+        {
+            HostBase newHost = Instantiate(prefab);
+            Debug.Log($"Loaded host: {(newHost == null)}");
+            SetHost(newHost, hostBase);
+        }
+        else
+        {
+            HostBase newHost = Instantiate(defaultHostPrefab);
+
+            SetHost(newHost, hostBase);
+        }
 
         Initialize(); // デフォルトホストで初期化
         Debug.Log($"Host{hostBase==null}, Position{data.position}, Scene{data.sceneName}");
@@ -82,12 +93,14 @@ public class PlayerController : MonoBehaviour
         SceneController.Instance.LoadScene(data.sceneName, data.position);
     }
 
+    //仮で追加した
     public void AddExperience(int amount)
     {
         experience += amount;
         Debug.Log($"Experience gained: {amount} (Total: {experience})");
     }
 
+    //仮で追加した
     public void AddGold(int amount)
     {
         gold += amount;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 敵の１エリアを管理するクラス
+/// </summary>
 public class EnemyNest : MonoBehaviour
 {
     [SerializeField] EnemyBase[] enemyBases;

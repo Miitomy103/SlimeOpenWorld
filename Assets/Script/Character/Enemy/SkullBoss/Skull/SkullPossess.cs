@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SkullPossess : PossessBase,IEnemy
 {
-
     public override bool CanPossess => (Mathf.InverseLerp(0, maxHp, currentHp) * 100) <= parsent;
     private Transform bossTransform;
 

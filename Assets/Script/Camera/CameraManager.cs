@@ -1,6 +1,9 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
+/// <summary>
+/// カメラを管理するクラス
+/// </summary>
 public class CameraManager : MonoBehaviour
 {
     static CameraManager instance;
@@ -12,7 +15,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] CinemachineFollow follow;
 
     [SerializeField,Range(followMaxOffset,followMinOffset)] float followOffset = 7.5f;
-    const float followMaxOffset = 13f;
+    const float followMaxOffset = 26f;
     const float followMinOffset = 5f;
 
     private void Awake()
@@ -36,7 +39,8 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.mouseScrollDelta.y != 0||!InputData.Instance.IsUsingUI)
+        // マウスホイールでカメラの距離を調整
+        if (Input.mouseScrollDelta.y != 0||!InputData.Instance.IsUsingUI)
         {
             followOffset -= Input.mouseScrollDelta.y;
             SetOffset(followOffset);

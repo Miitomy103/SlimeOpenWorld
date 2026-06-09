@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// データをロード、セーブするクラス
+/// </summary>
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
@@ -9,6 +12,7 @@ public class SaveManager : MonoBehaviour
 
     [SerializeField] bool loadOnStart = true;
     [SerializeField] bool isDefaultScene = true;
+    const string defaultDataPath = "DefaultData/";
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Initialize()
     {
         if (Instance != this) return;
         Debug.Log("Initializing SaveManager...");
@@ -36,6 +40,9 @@ public class SaveManager : MonoBehaviour
             SceneController.Instance.OnSceneLoaded += () =>Save();
     }
 
+    /// <summary>
+    /// プレイヤーの位置などのデータをロードする
+    /// </summary>
     void PlayerLoad()
     {
         if (!loadOnStart)
@@ -50,8 +57,24 @@ public class SaveManager : MonoBehaviour
         {
             PlayerController.Instance.ApplySaveData(data);
         }
+        else
+        {
+            var defaultData = Resources.Load<TextAsset>($"{defaultDataPath}player_save");
+            if (defaultData != null)
+            {
+                PlayerSaveData defaultSaveData = JsonUtility.FromJson<PlayerSaveData>(defaultData.text);
+                PlayerController.Instance.ApplySaveData(defaultSaveData);
+            }
+            else
+            {
+                Debug.LogWarning("Default player save data not found in Resources: " + defaultDataPath + "player_save");
+            }
+        }
     }
 
+    /// <summary>
+    /// クエストの進行状況などのデータをロードする
+    /// </summary>
     void QuestLoad()
     {
         questSaveObject = new SaveObject<QuestSaveData>("quest_save");
@@ -59,6 +82,19 @@ public class SaveManager : MonoBehaviour
         if (data != null)
         {
             QuestManager.Instance.LoadSaveData(data);
+        }
+        else
+        {
+            var defaultData = Resources.Load<TextAsset>($"{defaultDataPath}quest_save");
+            if(defaultData != null)
+            {
+                QuestSaveData defaultSaveData = JsonUtility.FromJson<QuestSaveData>(defaultData.text);
+                QuestManager.Instance.LoadSaveData(defaultSaveData);
+            }
+            else
+            {
+                Debug.LogWarning("Default quest save data not found in Resources: " + defaultDataPath + "quest_save");
+            }
         }
     }
 
@@ -70,12 +106,18 @@ public class SaveManager : MonoBehaviour
         QuestSave();
     }
 
+    /// <summary>
+    /// プレイヤーの位置などのデータをセーブする
+    /// </summary>
     void PlayerSave()
     {
         PlayerSaveData data = new PlayerSaveData(PlayerController.Instance.HostBase);
         playerSaveObject.Save(data);
     }
 
+    /// <summary>
+    /// クエストの進行状況などのデータをセーブする
+    /// </summary>
     void QuestSave()
     {
         QuestSaveData data = QuestManager.Instance.GetSaveData();

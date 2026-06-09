@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 特定の範囲を検知して、条件に合うオブジェクトを返すクラス
+/// </summary>
 public class PossessRange : MonoBehaviour
 {
     [Header("検知設定")]
@@ -11,6 +14,9 @@ public class PossessRange : MonoBehaviour
     [SerializeField]public Transform angleTransform;    // 向きを基準にするTransform（例：カメラ）
     [SerializeField]public Transform positionTransform; // 位置を基準にするTransform（例：プレイヤー本体）
 
+    /// <summary>
+    /// 型が合う範囲内の最も近いオブジェクトを返す
+    /// </summary>
     public T DetectEnemy<T>() where T : class
     {
         if (angleTransform == null || positionTransform == null)
@@ -52,6 +58,9 @@ public class PossessRange : MonoBehaviour
 
         return nearest;
     }
+    /// <summary>
+    /// 型が合う範囲内のオブジェクトをすべて返す
+    /// </summary>
     public T[] DetectEnemies<T>() where T : class
     {
         if (angleTransform == null || positionTransform == null)

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// ホスト（動かせるキャラクター）の基底クラス
+/// </summary>
 public abstract class HostBase : MonoBehaviour
 {
     [SerializeField] Transform cameraTarget;
@@ -42,11 +45,11 @@ public abstract class HostBase : MonoBehaviour
         gameObject.SetActive(false);
         ForceHostBack();
     }
-    public virtual void HandleInput(PlayerInput input)
-    {
-        //Input = input;
-    }
 
+    /// <summary>
+    /// ホストを開始する。基本的にはプレイヤーがホストをのっとるときに呼ばれる
+    /// </summary>
+    /// <param name="ago"></param>
     public virtual void StartHost(HostBase ago)
     {
         Possessor = ago;
@@ -55,18 +58,26 @@ public abstract class HostBase : MonoBehaviour
         UIManager.Instance?.HPVar.SetHPVar(currentHp, maxHp);
     }
 
+    /// <summary>
+    /// ホストを終了する。基本的にはプレイヤーがホストをのっとるのをやめるときに呼ばれる
+    /// </summary>
     public virtual void EndHost()
     {
         isPossessed = false;
     }
 
+    /// <summary>
+    /// ホストの更新処理。
+    /// </summary>
     public virtual void UpdateHost()
     {
         HostBack();
         Velocity();
     }
 
-
+    /// <summary>
+    /// プレイヤーに重力を毎フレーム与える
+    /// </summary>
     protected virtual void Velocity()
     {
         Vector3 gravity = Physics.gravity * Time.deltaTime;
@@ -76,6 +87,9 @@ public abstract class HostBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 乗っ取り状態を解除入力を確認し、解除する
+    /// </summary>
     public void HostBack()
     {
         if (Possessor == null||this is SlimeHost||!isPossessed) return;
@@ -88,6 +102,9 @@ public abstract class HostBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 乗っ取り状態を解除する
+    /// </summary>
     public void ForceHostBack()
     {
         if (Possessor == null) return;
@@ -95,7 +112,6 @@ public abstract class HostBase : MonoBehaviour
         Possessor = null;
     }
 
-    // Start is called before the first frame update
     protected virtual void Start()
     {
         

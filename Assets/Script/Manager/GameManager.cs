@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ゲーム全体を管理するクラス
+/// </summary>
 public class GameManager : MonoBehaviour
 {
 
@@ -16,6 +19,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(Time.timeScale);
+        GameStart();
+    }
+    private void GameStart()
+    {
+        SaveManager.Instance.Initialize();
     }
     public void Die()
     {

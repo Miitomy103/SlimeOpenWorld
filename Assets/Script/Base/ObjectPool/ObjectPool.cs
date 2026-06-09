@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトプールのクラス。オブジェクトを生成して、スタックに積んで管理します。
+/// </summary>
 public class ObjectPool<T> : IObjectPool<T> where T : Object, IPoolObject
 {
     [SerializeField]
@@ -55,6 +58,9 @@ public class ObjectPool<T> : IObjectPool<T> where T : Object, IPoolObject
         this.isCollectionCheck = isCollectionCheck;
     }
 
+    /// <summary>
+    /// オブジェクトをプールから有効化して取り出す。
+    /// </summary>
     public T EnableToPoolObject()
     {
         if (poolStack.Count == 0)
@@ -80,6 +86,9 @@ public class ObjectPool<T> : IObjectPool<T> where T : Object, IPoolObject
 
     bool ReturnToPoolObject(IPoolObject obj) => ReturnToPoolObject(obj as T);
 
+    /// <summary>
+    /// オブジェクトをプールに返す。
+    /// </summary>
     public bool ReturnToPoolObject(T obj)
     {
         if (!isReturnToStack)
@@ -107,6 +116,9 @@ public class ObjectPool<T> : IObjectPool<T> where T : Object, IPoolObject
         return true;
     }
 
+    /// <summary>
+    /// 有効なオブジェクトをすべてプールに返す。
+    /// </summary>
     public void ReturnToAllEnableObjects()
     {
         isReturnToStack = false;

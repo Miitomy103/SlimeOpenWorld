@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+/// <summary>
+/// オブジェクトを回すクラス
+/// </summary>
+public class Rotator 
 {
     Transform target;
     public Rotator(Transform target)

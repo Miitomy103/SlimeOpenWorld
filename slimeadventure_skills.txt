@@ -1,0 +1,121 @@
+====================================================
+  SlimeOpenWorld - ポートフォリオ記載技術まとめ
+====================================================
+
+----------------------------------------------------
+■ 設計パターン / アーキテクチャ
+----------------------------------------------------
+
+【汎用ステートマシン（自作）】
+  場所: Assets/Script/Base/StateMachine/Common/
+  内容: StateMachine<TKey>、IState<TKey>、IStateTransition<TKey> を
+        ジェネリクスで設計。キャラクター・敵・ボスすべてで共通利用。
+
+【Strategyパターン（攻撃フレーム処理）】
+  場所: Assets/Script/Weapon/IAttackCoroutine.cs
+  内容: 攻撃のフレームタイミングをインターフェースで抽象化し、
+        Coroutine版・UniTask非同期版を差し替え可能に設計。
+
+【Interfaceによる依存性の分離】
+  場所: IDamageable、IHost、IPoolObject、ICapability など26ファイル以上
+  内容: キャラクターの「憑依システム」も型に依存せずHostBaseで管理。
+
+【オブジェクトプール（自作）】
+  場所: Assets/Script/Base/ObjectPool/ObjectPool.cs
+  内容: ジェネリクス対応の ObjectPool<T>。Stack管理、容量超過時の
+        自動拡張、コレクションチェックオプション付き。
+
+----------------------------------------------------
+■ Unity固有の高度な機能
+----------------------------------------------------
+
+【CullingGroup（距離LOD）】
+  場所: Assets/Script/Manager/CullingGroupDistanceLOD.cs
+  内容: UnityのCullingGroup APIを使い、プレイヤーからの距離に応じて
+        オブジェクトのアクティブ状態をコールバックで制御する独自LODシステム。
+
+【NavMesh（AI経路探索）】
+  場所: Assets/Script/Character/Enemy/Skeleton/
+  内容: スケルトン敵のAI移動にNavMeshAgentを使用。
+
+【Bezierカーブ（3D軌跡）】
+  場所: Assets/Script/Character/Enemy/SkullBoss/Skull/BezierMover.cs
+  内容: 3次ベジェ曲線を数式から実装し、ボスの飛翔物の軌跡・向き制御に使用。
+        AnimationCurveで速度変化も制御。
+
+【Physics API（当たり判定）】
+  場所: Assets/Script/Base/OverLap/
+  内容: OverLapSphere、OverLapCapsuleを抽象基底クラス化し、
+        Raycastと組み合わせてカメラ・攻撃判定に活用。
+
+----------------------------------------------------
+■ 非同期処理
+----------------------------------------------------
+
+【UniTask (Cysharp)】
+  場所: Assets/Script/Weapon/AnimAttackAcyncFrame.cs
+  内容: Cysharp.Threading.Tasks を使用し、アニメーションのフレームタイミングに
+        合わせた攻撃コライダーON/OFFを非同期で処理。
+        async UniTask + UniTask.Delay。
+
+【Coroutine】
+  内容: ボスの行動パターンや移動など複数箇所でCoroutineを活用。
+
+----------------------------------------------------
+■ データ管理
+----------------------------------------------------
+
+【JSONセーブシステム（自作）】
+  場所: Assets/Script/Data/SaveObject.cs
+  内容: ジェネリクスの SaveObject<T> クラスで
+        JsonUtility + File.WriteAllText によるセーブ/ロードを実装。
+        プレイヤーデータとクエストデータを独立して管理。
+
+【ScriptableObject】
+  場所: Assets/Script/Weapon/AnimAttackAcyncFrameSO.cs、QuestData、ItemData など
+  内容: データとロジックを分離してインスペクターから編集可能に設計。
+
+----------------------------------------------------
+■ ゲームシステム
+----------------------------------------------------
+
+  ・憑依システム（複数キャラクター切り替え）  Character/Host/, Possess/
+  ・クエストシステム                          Quest/QuestManager.cs + セーブ連携
+  ・ボス戦（複数フェーズ）                    SkullBoss/
+  ・シーン管理（非同期ロード）                Manager/SceneController.cs
+  ・マップUI・ミニマップ                      UI/Map/
+  ・Singletonパターンによるマネージャー管理   CameraManager, SaveManager 等
+
+----------------------------------------------------
+■ 使用ツール・ライブラリ
+----------------------------------------------------
+
+  ・Unity 3D          メインエンジン
+  ・UniTask            非同期処理 (Cysharp)
+  ・NavMesh            敵AI経路探索
+  ・JsonUtility        セーブシステム
+  ・CullingGroup API   独自LOD最適化
+  ・カスタムEditor     インスペクター拡張 (StateDictionaryEditor 等)
+  ・Git                バージョン管理
+  ・C#                 メイン言語（ジェネリクス・インターフェース活用）
+
+----------------------------------------------------
+■ 特にアピールポイントとして強い項目
+----------------------------------------------------
+
+  1. 汎用ステートマシンの自作
+     → Unityのアニメーターに頼らずジェネリクスで設計・実装
+
+  2. UniTaskを使った攻撃フレーム管理
+     → アニメーションフレームと非同期処理を組み合わせた精密な制御
+
+  3. CullingGroupによる独自LODシステム
+     → Unity内部APIを直接扱うパフォーマンス最適化
+
+  4. ジェネリクスを活用したオブジェクトプール・セーブシステム
+     → 汎用性の高い再利用可能な設計
+
+  5. Bezierカーブの数式実装
+     → 数学的アルゴリズムをゲームに応用
+
+====================================================

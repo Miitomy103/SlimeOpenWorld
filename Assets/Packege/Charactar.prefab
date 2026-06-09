@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 2743952101659834493}
   - component: {fileID: 5040328337180694045}
   - component: {fileID: 1333613639610112686}
-  - component: {fileID: 8181856557859578445}
   - component: {fileID: 4315294692223855248}
   - component: {fileID: 8952684242924440036}
   - component: {fileID: 7906258260947198756}
@@ -212,29 +211,13 @@ MonoBehaviour:
   defaultAimSpeed: 2
   currentState: 
   detectRange:
-    detectRadius: 28.4
-    detectAngle: 84
+    detectRadius: 15.4
+    detectAngle: 360
     angleTransform: {fileID: 0}
     positionTransform: {fileID: 0}
     exclusions: []
     lineColor: {r: 1, g: 0, b: 0, a: 1}
   projectileLauncherPrefab: {fileID: 2778564574262634853, guid: 1e396ed93ffa07d4e896b53c6fcd529d, type: 3}
---- !u!114 &8181856557859578445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4061609212786621462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c683fb4127355eb438d9a31d085e5fd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRadius: 16.25
-  detectAngle: 119.6
-  angleTransform: {fileID: 6428333381206225651}
-  positionTransform: {fileID: 6428333381206225651}
 --- !u!143 &4315294692223855248
 CharacterController:
   m_ObjectHideFlags: 0

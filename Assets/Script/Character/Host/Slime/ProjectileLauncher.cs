@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// オブジェクトを放物線で飛ばすコンポーネント
+/// </summary>
 public class ProjectileLauncher : MonoBehaviour
 {
     [SerializeField] float distanceTarget = 0.5f;

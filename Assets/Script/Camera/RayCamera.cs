@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class RayCamera : MonoBehaviour
 {
     [Header("設定")]
-    [SerializeField] private Transform target=>PlayerController.Instance.HostBase.transform;  // プレイヤーをターゲットに
+    private Transform target=>PlayerController.Instance.HostBase.transform;  // プレイヤーをターゲットに
     [SerializeField] private float fadeAlpha = 0.2f;   // 半透明時のアルファ値
     [SerializeField] private float fadeSpeed = 5f;      // フェード速度
     [SerializeField] private LayerMask occlusionLayer;  // 対象レイヤー

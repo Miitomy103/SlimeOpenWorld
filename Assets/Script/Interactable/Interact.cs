@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーがインタラクト可能なオブジェクトを検出し、インタラクトUIを表示するクラス
+/// </summary>
 public class Interact : MonoBehaviour
 {
     [SerializeField] InteractTextControl interactTextControl;

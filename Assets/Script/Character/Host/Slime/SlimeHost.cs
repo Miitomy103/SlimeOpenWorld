@@ -4,6 +4,9 @@ using UnityEngine;
 using InGame;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// スライムのホストクラス
+/// </summary>
 public class SlimeHost : HostBase
 {
     public StateMachine<SlimeHost> stateMachine;
@@ -28,8 +31,6 @@ public class SlimeHost : HostBase
     public SlimeAttack SlimeAttack => slimeAttack;
     #endregion
 
-    PossessRange possessRange;
-
     FollowUI followUI;
 
     [SerializeField] CameraPivotRotator cameraPivotRotator;
@@ -48,7 +49,6 @@ public class SlimeHost : HostBase
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        possessRange = GetComponentInChildren<PossessRange>();
         movement = new Movement(transform, controller);
         rotator = new Rotator(transform);
     }
@@ -58,7 +58,7 @@ public class SlimeHost : HostBase
         base.Start();
         projectileLauncher = Instantiate(projectileLauncherPrefab, transform.position, Quaternion.identity);
 
-        detectRange.Initialize(Camera.main.transform, Camera.main.transform);
+        detectRange.Initialize(transform,transform);
         followUI = FollowUI.Instance;
     }
     public override void StartHost(HostBase ago)
@@ -89,6 +89,9 @@ public class SlimeHost : HostBase
     }
 
     IPossess possessTarget;
+    /// <summary>
+    /// のっとり可能な対象を探して、のっとりを実行する
+    /// </summary>
     void Possess()
     {
         IPossess[] possessTargets = detectRange.DetectComponents<IPossess>();
@@ -116,6 +119,7 @@ public class SlimeHost : HostBase
 
         if (input.Button3.onDown)
         {
+            //乗っ取り演出
             this.possessTarget = possessTarget;
             projectileLauncher.gameObject.SetActive(true);
             projectileLauncher.transform.position = transform.position;
@@ -126,6 +130,9 @@ public class SlimeHost : HostBase
             gameObject.SetActive(false);
         }
     }
+    /// <summary>
+    /// のっとりを実行する
+    /// </summary>
     private void Possession()
     {
         Time.timeScale = 1f;

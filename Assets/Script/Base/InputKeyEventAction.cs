@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// 指定したキーが押されたときにイベントを発火させるコンポーネント
+/// 基本デバッグでしか使用しない
+/// </summary>
 public class InputKeyEventAction : MonoBehaviour
 {
     [System.Serializable]

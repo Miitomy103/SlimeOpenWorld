@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 球の形をOverLapで取得するクラス。
+/// </summary>
 public class OverLapSphere : OverlapBase
 {
     public float radius = 1f;
