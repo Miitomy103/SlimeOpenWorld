@@ -11,8 +11,16 @@ public class PossessRange : MonoBehaviour
     [SerializeField]public float detectAngle = 60f;     // 視界の角度
 
     [Header("参照設定")]
-    [SerializeField]public Transform angleTransform;    // 向きを基準にするTransform（例：カメラ）
-    [SerializeField]public Transform positionTransform; // 位置を基準にするTransform（例：プレイヤー本体）
+    [SerializeField]private Transform angleTransform;    // 向きを基準にするTransform（例：カメラ）
+    [SerializeField]private Transform positionTransform; // 位置を基準にするTransform（例：プレイヤー本体）
+    public Transform AngleTransform => angleTransform;
+    public Transform PositionTransform => positionTransform;
+
+    public void Initialize(Transform angleTrans, Transform positionTrans)
+    {
+        if(angleTrans!=null) angleTransform = angleTrans;
+        if(positionTrans!=null) positionTransform = positionTrans;
+    }
 
     /// <summary>
     /// 型が合う範囲内の最も近いオブジェクトを返す

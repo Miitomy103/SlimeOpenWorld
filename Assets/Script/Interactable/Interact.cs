@@ -31,7 +31,7 @@ public class Interact : MonoBehaviour
         foreach (var enemy in nearestEnemies)
         {
             if (!enemy.CanInteract) continue;
-            float dist = Vector3.Distance(possessRange.positionTransform.transform.position, ((MonoBehaviour)enemy).transform.position);
+            float dist = Vector3.Distance(possessRange.PositionTransform.transform.position, ((MonoBehaviour)enemy).transform.position);
             if (dist < nearestDist && dist <= possessRange.detectRadius)
             {
                 nearestDist = dist;

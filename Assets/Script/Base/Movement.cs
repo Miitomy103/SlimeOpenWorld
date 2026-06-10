@@ -4,10 +4,12 @@ public class Movement
 {
     readonly Transform target;
     readonly CharacterController controller;
-    public Movement(Transform target, CharacterController controller)
+    readonly Transform moveReference;
+    public Movement(Transform target, CharacterController controller, Transform moveReference)
     {
         this.target = target;
         this.controller = controller;
+        this.moveReference = moveReference;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Vector3 HandleInput(float speed,Vector2 moveInput,Vector3 velocity)
@@ -17,8 +19,18 @@ public class Movement
 
         if (moveInput3.magnitude > 0.1f)
         {
-            Vector3 camForward = Vector3.forward;
-            Vector3 camRight = Vector3.right;
+            Vector3 camForward;
+            Vector3 camRight;
+            if (moveReference != null)
+            {
+                camForward = moveReference.forward;
+                camRight = moveReference.right;
+            }
+            else
+            {
+                camForward = Vector3.forward;
+                camRight = Vector3.right;
+            }
             camForward.y = 0;
             camRight.y = 0;
             camForward.Normalize();

@@ -49,7 +49,7 @@ public class SlimeHost : HostBase
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        movement = new Movement(transform, controller);
+        movement = new Movement(transform, controller,Camera.main.transform);
         rotator = new Rotator(transform);
     }
 

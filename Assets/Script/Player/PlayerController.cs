@@ -59,8 +59,7 @@ public class PlayerController : MonoBehaviour
         hostBase = newHost;
         hostBase.StartHost(agoHost);
         onHostChange?.Invoke(hostBase);
-        possessRange.angleTransform = hostBase.transform;
-        possessRange.positionTransform = hostBase.transform;
+        possessRange.Initialize(hostBase.transform, hostBase.transform);
         CameraManager.Instance.SetFollow(hostBase.CameraTarget);
     }
 
