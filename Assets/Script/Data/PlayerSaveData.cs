@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーのセーブデータ(位置・シーン名・乗っ取り中のホスト名)。
+/// </summary>
 [System.Serializable]
 public class PlayerSaveData
 {

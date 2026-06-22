@@ -1,7 +1,12 @@
-using UnityEditor;
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using System;
+using UnityEditor;
+
+/// <summary>
+/// スクリプト新規作成時に、"public class I～ : MonoBehaviour" の形をしているものを
+/// 自動でinterfaceへ変換するエディタ拡張。
+/// </summary>
 public class InterfaceChanger : AssetModificationProcessor
 {
     public static void OnWillCreateAsset(string path)

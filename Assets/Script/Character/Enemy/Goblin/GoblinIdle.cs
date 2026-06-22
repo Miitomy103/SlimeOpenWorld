@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// ゴブリンの待機ステート。設定されたIdleDataに応じて静止/徘徊を行う
+/// </summary>
 public class GoblinIdle : IState<Goblin>
 {
     [SerializeField] IdleData[] idleDatas;

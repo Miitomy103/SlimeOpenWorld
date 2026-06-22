@@ -1,6 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 // ================================================================================
 // ObjectiveData.cs - 目標データ定義 with Tooltips
@@ -29,6 +29,9 @@ public class ObjectiveData
 // Objective.cs - 目標の実行時クラス
 // ================================================================================
 
+/// <summary>
+/// ObjectiveDataを元にした目標の実行時インスタンス。進行状況の更新と完了通知を行う。
+/// </summary>
 public class Objective
 {
     public ObjectiveData data;

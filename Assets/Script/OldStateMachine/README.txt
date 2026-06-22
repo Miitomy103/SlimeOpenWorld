@@ -1,0 +1,5 @@
+旧バージョンのステートマシン(namespace InGame)です。
+
+Assets/Script/Common/StateMachine/ に汎用版の後継がありますが、
+このOldStateMachineはAnimatorStatemachine等、現在も一部キャラクターのアニメーション制御で
+使用中のため残しています。新規実装はCommon/StateMachineを使ってください。

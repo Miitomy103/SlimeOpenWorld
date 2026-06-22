@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間のジャンプステート。重力で落下し、接地したらMove/Idleへ戻る
+/// </summary>
 [System.Serializable]
 public class HumanJump : IState<HumanHost>
 {

@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// スケルトンの待機ステート。初期位置からズレていれば戻る
+/// </summary>
 [System.Serializable]
 public class SkeletonIdle : IState<Skeleton>
 {

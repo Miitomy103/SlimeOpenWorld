@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// ベジェ曲線を描きながら開始地点から終了地点まで飛行するPoolObject。
+/// </summary>
 public class BezierMover : PoolObject
 {
     [SerializeField] float duration = 1.0f;        // 飛行時間（秒）

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 namespace StateMachine
 {
@@ -25,7 +24,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// Inspector上での開閉トグル状態とIStateの組。
         /// </summary>
         class ComponentState
         {
@@ -44,7 +43,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 対象オブジェクトのデフォルトInspectorを描画する。
         /// </summary>
         /// <param name="targetObject"></param>
         private void DrawObjectInspector(Object targetObject)
@@ -108,7 +107,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 検索ボックスにフォーカスがある間、ステート名のトグル一覧を表示する。
         /// </summary>
         private void DrawSearchToggles()
         {

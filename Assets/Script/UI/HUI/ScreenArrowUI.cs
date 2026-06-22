@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 画面外のターゲットへの方向を示す矢印UI。画面内なら追従、画面外なら端でクランプして向きを示す。
+/// </summary>
 public class ScreenArrowUI : MonoBehaviour
 {
     [SerializeField] RectTransform arrowRect;

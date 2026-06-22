@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// 骸骨(Skull)に取り憑いて突進攻撃を行うホスト。targetに接触すると攻撃して乗っ取りを解除する
+/// </summary>
 public class SkullHost : HostBase
 {
     public Transform target { get; set; }

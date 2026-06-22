@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// デバッグ用: シーン上の敵アイコンをまとめてMapObjectへ登録するハーネス。
+/// </summary>
 public class DebugMapObject : MonoBehaviour
 {
     [SerializeField] EnemyMapObject[] enemyMapObject;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// スライムが発射する弾。一定時間または衝突でプールに戻る
+/// </summary>
 public class SlimeBullet : PoolObject
 {
     float speed = 10f;

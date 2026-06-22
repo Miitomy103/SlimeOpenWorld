@@ -1,7 +1,10 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using InGame;
 
+/// <summary>
+/// スケルトンの後退ステート。プレイヤーから一定距離離れたら戦闘ステートへ戻る
+/// </summary>
 [System.Serializable]
 public class SkeletonBack : IState<Skeleton>
 {

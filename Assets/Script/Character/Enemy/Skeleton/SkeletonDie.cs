@@ -1,7 +1,10 @@
 using UnityEngine;
-using InGame;
 using Cysharp.Threading.Tasks;
+using InGame;
 
+/// <summary>
+/// スケルトンの死亡ステート。死亡アニメーション再生後にOnDieを呼ぶ
+/// </summary>
 [System.Serializable]
 public class SkeletonDie : IState<Skeleton>
 {

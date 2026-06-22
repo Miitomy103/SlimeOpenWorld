@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
-using StateMachine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System;
 using UnityEngine.Events;
+using StateMachine;
 
+/// <summary>
+/// SkullBoss本体。HP管理、プレイヤーへの自動回転、重力処理を行い、
+/// 各ステート(Idle/Walk/Attack/Die)はGetComponentで取得して切り替える
+/// </summary>
 public class SkullBoss : MonoBehaviour,IIsAutoRotator
 {
     [Header("Parameters")]
@@ -28,19 +32,18 @@ public class SkullBoss : MonoBehaviour,IIsAutoRotator
 
     #region State Machine
     /// <summary>
-    /// 
+    /// アタッチされている各Stateコンポーネントを管理するステートマシン
     /// </summary>
     protected StateMachine<string> stateMachine;
 
     /// <summary>
-    /// 
+    /// アタッチされている全Stateコンポーネント
     /// </summary>
     protected StateBase<string>[] states;
 
     /// <summary>
-    /// 
+    /// GetComponentsで全Stateコンポーネントを取得する
     /// </summary>
-    /// 
     protected StateBase<string>[] CreateStates()
     { 
         return GetComponents<StateBase<string>>();

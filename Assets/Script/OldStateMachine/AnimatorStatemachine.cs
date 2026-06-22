@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Animatorのステート開始/終了に合わせてOnAttackStart/OnAttackEndを発火するStateMachineBehaviour。
+/// stateType・keyはAnimatorStateDataから同じ組を検索する際の目印。
+/// </summary>
 public class AnimatorStatemachine : StateMachineBehaviour
 {
     [SerializeField] StateType stateType;

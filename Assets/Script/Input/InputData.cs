@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// InputSystemPlayerをラップし、現在フレームのPlayerInputをまとめて取得できるシングルトン。
+/// UI操作中(IsUsingUI)は入力を無効化する。
+/// </summary>
 public class InputData : MonoBehaviour
 {
     public InputSystemPlayer inputActions;

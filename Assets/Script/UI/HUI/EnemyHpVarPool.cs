@@ -1,7 +1,8 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// 敵のHPバー(FollowHPVar)をオブジェクトプールで管理し、必要に応じてターゲットへ割り当てるクラス。
+/// </summary>
 public class EnemyHpVarPool : MonoBehaviour
 {
     [SerializeField] FollowHPVar varPrefab;

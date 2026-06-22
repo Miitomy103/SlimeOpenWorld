@@ -1,7 +1,10 @@
-using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// 指定時間で対象のTransformを目標位置まで等速直線移動させるIMoveCoroutine実装。
+/// </summary>
 public class DefaultMoveCoroutine : IMoveCoroutine
 {
     Transform _transform;

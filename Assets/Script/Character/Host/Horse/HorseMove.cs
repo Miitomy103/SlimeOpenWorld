@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 馬の移動ステート。カメラ基準の入力で移動し、アニメーションへ反映する
+/// </summary>
 [System.Serializable]
 public class HorseMove : IState<HorseHost>
 {

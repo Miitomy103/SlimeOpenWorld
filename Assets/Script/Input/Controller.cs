@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// InputSystemPlayerのMoveアクションを購読し、移動入力をMoveプロパティとして公開するクラス。
+/// </summary>
 public class Controller : MonoBehaviour
 {
     public InputSystemPlayer inputActions;

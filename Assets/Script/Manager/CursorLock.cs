@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// マウスカーソルの表示/ロック状態を切り替えるユーティリティ。
+/// </summary>
 public class CursorLock : MonoBehaviour
 {
     void Start()

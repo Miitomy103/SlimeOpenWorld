@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// TerrainData上の木(TreeInstance)を、対応するPrefabとして実際のGameObjectに変換配置するエディタ用ツール。
+/// </summary>
 public class TerrainConverter : MonoBehaviour
 {
     public Terrain terrain;

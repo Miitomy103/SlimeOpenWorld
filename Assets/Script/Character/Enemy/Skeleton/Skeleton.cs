@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using InGame;
-using System;
 
+/// <summary>
+/// スケルトンの敵クラス。ステートマシンでの行動制御とNPCへの乗っ取り(Possess)対応を行う
+/// </summary>
 public class Skeleton : EnemyBase,IPossess
 {
     public StateMachine<Skeleton> stateMachine { get; private set; }

@@ -1,7 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 指定したターゲットの頭上にUI要素を追従させるシングルトン。
+/// </summary>
 public class FollowUI : MonoBehaviour
 {
     static public FollowUI Instance { get; private set; }

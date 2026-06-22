@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// ミニマップ上でプレイヤーの位置と向きを示すアイコンを管理するクラス。
+/// </summary>
 public class PlayerMapObject : MonoBehaviour,IMapObject
 {
     [SerializeField] RectTransform icon;

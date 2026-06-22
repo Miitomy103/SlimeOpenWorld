@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// クエストを持つNPC。インタラクトでクエストUIを表示する。
+/// </summary>
 public class NpcCharacter : MonoBehaviour,IInteractable
 {
     [SerializeField] private string npcID;

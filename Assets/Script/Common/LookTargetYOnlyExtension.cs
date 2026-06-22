@@ -1,6 +1,9 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
+/// <summary>
+/// Cinemachineカメラのワールド座標Yだけをターゲットに追従させるエクステンション。
+/// </summary>
 public class LookTargetYOnlyExtension : CinemachineExtension
 {
     [SerializeField] Transform lookTarget;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// <summary>
+/// 設定画面のUIから音量を変更し、ConfigManager経由で保存・読込を行うクラス。
+/// </summary>
 public class ConfigBehaviour : MonoBehaviour
 {
     [SerializeField] ConfigData configData;

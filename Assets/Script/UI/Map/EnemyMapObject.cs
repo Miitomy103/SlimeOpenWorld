@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// ミニマップ上で敵の位置を示すアイコンを管理するクラス。
+/// </summary>
 [System.Serializable]
 public class EnemyMapObject : IMapObject
 {

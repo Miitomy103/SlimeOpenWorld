@@ -1,7 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 音量設定の保存用データ。JSONとしてシリアライズされる。
+/// </summary>
 [System.Serializable]
 public class ConfigData
 {

@@ -1,10 +1,10 @@
-using Cysharp.Threading.Tasks;
-using NUnit.Framework;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// プレイヤー側の通常剣攻撃。攻撃中はOverlapBaseの範囲判定でEnemyBaseに継続ダメージを与える。
+/// </summary>
 public class NormalSord : WeaponBase
 {
     [SerializeField] OverlapBase overLapBase;
@@ -27,6 +27,9 @@ public class NormalSord : WeaponBase
         hitEnemyList.Clear();
         overLapBase = null;
     }
+    /// <summary>
+    /// 攻撃が有効な間、範囲内のEnemyBaseを検出して生存している敵に1回だけダメージを与える。
+    /// </summary>
     private void FixedUpdate()
     {
         if (isAttack)

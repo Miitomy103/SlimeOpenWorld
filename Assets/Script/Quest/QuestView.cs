@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 現在のクエスト目標をUIに表示し、目標対象への方向矢印をUIManagerに出すクラス。
+/// </summary>
 public class QuestView : MonoBehaviour
 {
     [SerializeField] private GameObject uiParent;

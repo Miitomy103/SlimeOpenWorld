@@ -1,8 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
-using InGame;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using Cysharp.Threading.Tasks;
+using InGame;
 
+/// <summary>
+/// 人間の近接攻撃ステート。連続入力でコンボ攻撃を行う
+/// </summary>
 [System.Serializable]
 public class HumanAttack : IState<HumanHost>, ICanBool
 {

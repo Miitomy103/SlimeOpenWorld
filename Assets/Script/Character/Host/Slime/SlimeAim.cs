@@ -1,6 +1,5 @@
 using UnityEngine;
 using InGame;
-using Unity.Cinemachine;
 
 /// <summary>
 /// スライムが弾を撃つステート

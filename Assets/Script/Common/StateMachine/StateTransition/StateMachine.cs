@@ -15,13 +15,13 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 現在のステート。
         /// </summary>
         public IState CurrentState => m_currentState;
 
 
         /// <summary>
-        /// 
+        /// ステート一覧を登録し、各ステートの遷移先としてこのインスタンスを設定する。
         /// </summary>
         /// <param name="states"></param>
         /// <param name="comparer"></param>
@@ -38,7 +38,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 現在のステートのOnUpdateを呼び出す。
         /// </summary>
         public void Update()
         {
@@ -47,7 +47,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 指定したキーのステートが登録済みか判定する。
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 指定したキーのステートへ遷移する。
         /// </summary>
         /// <param name="key"></param>
         public void Transition(TKey key)
@@ -83,7 +83,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// ステートを1件追加登録する。
         /// </summary>
         /// <param name="state"></param>
         public bool AddState(IState<TKey> state)
@@ -108,7 +108,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 登録済みのステートをすべて解放する。
         /// </summary>
         public void Dispose()
         {

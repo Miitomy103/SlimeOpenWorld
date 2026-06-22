@@ -1,9 +1,12 @@
-using UnityEngine;
-using InGame;
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
+using Cysharp.Threading.Tasks;
+using InGame;
 
+/// <summary>
+/// スライムの近接攻撃ステート。検出範囲内の敵に継続的にダメージを与える
+/// </summary>
 [System.Serializable]
 public class SlimeAttack : IState<SlimeHost>
 {

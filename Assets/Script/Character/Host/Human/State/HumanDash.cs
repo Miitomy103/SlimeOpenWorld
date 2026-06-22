@@ -1,7 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間のダッシュステート。入力に応じてダッシュ攻撃/ジャンプ/通常移動へ遷移する
+/// </summary>
 [System.Serializable]
 public class HumanDash : IState<HumanHost>
 {

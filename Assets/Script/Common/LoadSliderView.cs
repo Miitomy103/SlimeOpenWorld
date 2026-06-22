@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 子のImageを上下に動かして進捗を表すロード用スライダーView。
+/// </summary>
 [RequireComponent(typeof(Image))]
 public sealed class LoadSliderView : MonoBehaviour
 {

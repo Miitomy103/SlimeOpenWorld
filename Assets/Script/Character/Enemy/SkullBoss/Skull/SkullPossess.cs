@@ -1,6 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// SkullBossが射出する骸骨(Skull)。プレイヤーに乗っ取られるとSkullHostへ変化する
+/// </summary>
 public class SkullPossess : PossessBase,IEnemy
 {
     public override bool CanPossess => (Mathf.InverseLerp(0, maxHp, currentHp) * 100) <= parsent;

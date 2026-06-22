@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AnimAttackAcyncFrameSO", menuName = "ScriptableObject/Weapon/AnimAttackAcyncFrameSO")]
+/// <summary>
+/// IAnimAttackAcyncFrameDataのアセット版。武器ごとに攻撃フレーム設定を共有・再利用できる。
+/// </summary>
 public class AnimAttackAcyncFrameSO : ScriptableObject,IAnimAttackAcyncFrameData
 {
     [SerializeField] int enable = 30;

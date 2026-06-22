@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 敵キャラクターの基底クラス。HP管理と検出時の通知を共通化する
+/// </summary>
 public abstract class EnemyBase : MonoBehaviour, IEnemy
 {
     [SerializeField] protected int maxHealth = 100;

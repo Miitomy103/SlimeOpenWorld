@@ -1,8 +1,11 @@
-using StateMachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StateMachine;
 
+/// <summary>
+/// SkullBossの徘徊ステート。正面方向に一定時間歩いたらIdleへ戻る
+/// </summary>
 public class SkullBossWalk : StateBase<string>, ITransitionCondition<string>
 {
     public const string key = "SkullBossWalk";

@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 /// <summary>
 /// AnimatorコンポーネントのTriggerから呼び出されるクラス。

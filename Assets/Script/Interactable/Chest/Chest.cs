@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(IdDataBehaviour))]
+/// <summary>
+/// 開けるとアイテムを1つ入手できるチェスト。
+/// </summary>
 public class Chest : MonoBehaviour,IInteractable
 {
     [SerializeField]private bool isOpen = false;
@@ -26,6 +29,9 @@ public class Chest : MonoBehaviour,IInteractable
         canInteract = false;
         GameEvents.ObjectInteracted(interactableID);
     }
+    /// <summary>
+    /// 開封アニメーションから呼び出され、中身のアイテムを取得させる。
+    /// </summary>
     public void OpenChest()
     {
         ItemCanvas.Instance.GetItem(itemData);

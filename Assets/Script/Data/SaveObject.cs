@@ -1,6 +1,9 @@
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
+/// <summary>
+/// 任意のデータをJSON形式でpersistentDataPathに保存・読込する汎用クラス。
+/// </summary>
 public class SaveObject<T> where T : class
 {
     string fullPath;

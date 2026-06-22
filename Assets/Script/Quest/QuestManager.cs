@@ -1,10 +1,10 @@
 // ================================================================================
 // QuestManager.cs - クエスト管理システム
 // ================================================================================
-using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
@@ -122,6 +122,9 @@ public class QuestManager : MonoBehaviour
     // クエスト開始・完了・失敗
     // ================================================================================
 
+    /// <summary>
+    /// 前提条件・重複・リピート可否をチェックした上でクエストを開始する。
+    /// </summary>
     public bool StartQuest(string questID)
     {
         if (!allQuests.ContainsKey(questID))

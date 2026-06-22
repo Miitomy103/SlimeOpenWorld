@@ -1,7 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using StateMachine;
-using System.Collections.Generic;
-using System.Collections;
+
+/// <summary>
+/// SkullBossの攻撃ステート。アニメーション攻撃終了時にSkullPossessを射出する
+/// </summary>
 public class SkullBossAttack : StateBase<string>,ITransitionCondition<string>
 {
     public static string key = "SkullBossAttack";

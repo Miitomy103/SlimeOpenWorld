@@ -20,6 +20,10 @@ public class ItemCanvas : MonoBehaviour
 
         StartCoroutine(ShowItemCoroutine(itemData));
     }
+
+    /// <summary>
+    /// アイテム取得パネルを表示し、時間停止とクリック待ちを行ってから閉じる。
+    /// </summary>
     IEnumerator ShowItemCoroutine(ItemData itemData)
     {
         yield return new WaitForSeconds(0.2f);

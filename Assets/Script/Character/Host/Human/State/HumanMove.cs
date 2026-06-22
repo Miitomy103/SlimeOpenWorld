@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間の移動ステート。入力の強さで歩き/走りを切り替える
+/// </summary>
 [System.Serializable]
 public class HumanMove : IState<HumanHost>
 {

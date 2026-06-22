@@ -1,7 +1,10 @@
-using Cysharp.Threading.Tasks;
 using System;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// アニメーションのフレーム数(enable/disable)をサンプルフレーム数と再生速度から秒数に変換し、
+/// その時間差で攻撃の有効/無効を切り替えるIAttackCoroutine実装。
+/// </summary>
 public class AnimAttackAcyncFrame : IAttackCoroutine
 {
     readonly float onEnable;

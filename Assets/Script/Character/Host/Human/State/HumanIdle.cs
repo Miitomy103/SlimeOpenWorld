@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間の待機ステート。入力に応じてMove/Attack/Jumpへ遷移する
+/// </summary>
 [System.Serializable]
 public class HumanIdle : IState<HumanHost>
 {

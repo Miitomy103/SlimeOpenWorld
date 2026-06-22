@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using StateMachine;
-using System.Collections.Generic;
-using System.Collections;
 
+/// <summary>
+/// SkullBossの待機ステート。idleTime経過後、ランダムでWalk/Attackへ遷移する
+/// </summary>
 public class SkullBossIdle : StateBase<string>, ITransitionCondition<string>
 {
     public const string key = "SkullBossIdle";

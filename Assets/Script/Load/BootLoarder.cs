@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
+/// <summary>
+/// 進捗バーとブラックアウトを表示しつつ、SceneNameStaticで指定されたシーン
+/// (未指定時はdefaultSceneName)を非同期で読み込むブートローダー。
+/// </summary>
 public class BootLoader : MonoBehaviour
 {
     [SerializeField] string defaultSceneName = "TitleScene";

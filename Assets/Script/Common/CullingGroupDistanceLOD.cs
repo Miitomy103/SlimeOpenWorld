@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// CullingGroupを使い、対象との距離に応じて段階的に処理を間引くLODコンポーネント。
+/// </summary>
 public class CullingGroupDistanceLOD : MonoBehaviour
 {
     [SerializeField] Transform player;

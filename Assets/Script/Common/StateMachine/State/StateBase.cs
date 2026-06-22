@@ -15,19 +15,19 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// 遷移先を決定するステートマシン本体への参照。
         /// </summary>
         protected IStateTransition<TKey> transition;
 
 
         /// <summary>
-        /// 
+        /// IState&lt;TKey&gt;.Transitionの実装。transitionフィールドに代入する。
         /// </summary>
         IStateTransition<TKey> IState<TKey>.Transition { set => transition = value; }
 
 
         /// <summary>
-        /// 
+        /// このステートを識別するキー。
         /// </summary>
         public abstract TKey Key { get; }
 
@@ -100,7 +100,7 @@ namespace StateMachine
 
 
         /// <summary>
-        /// 
+        /// このステートが有効な間、毎フレーム呼び出されます。
         /// </summary>
         public void OnUpdate()
         {

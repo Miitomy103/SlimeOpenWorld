@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 指定位置でエフェクトを順次有効化する炎魔法コンポーネント
+/// </summary>
 public class FireMagic : MonoBehaviour
 {
     [SerializeField]ObjectFloatData<GameObject>[] fireMagicDatas;

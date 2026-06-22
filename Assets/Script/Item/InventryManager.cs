@@ -1,8 +1,8 @@
 // ================================================================================
 // InventoryManager.cs - インベントリ管理（簡易版）
 // ================================================================================
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {

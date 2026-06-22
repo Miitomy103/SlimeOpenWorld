@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間のホストクラス。Move/Idle/Dash/Attack/Jumpの各ステートを切り替えて行動する
+/// </summary>
 public class HumanHost : HostBase
 {
     public StateMachine<HumanHost> stateMachine;

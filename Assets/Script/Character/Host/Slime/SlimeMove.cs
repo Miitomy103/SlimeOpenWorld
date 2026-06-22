@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// スライムの移動ステート。入力方向へ移動し、停止/Aim/Attack入力で他ステートへ遷移する
+/// </summary>
 [System.Serializable]
 public class SlimeMove : IState<SlimeHost>
 {

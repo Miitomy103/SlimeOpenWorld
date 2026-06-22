@@ -2,6 +2,9 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ボス戦シーンの進行管理。タイマー計測とクリア時のリザルト表示を行う。
+/// </summary>
 public class BossScene : MonoBehaviour
 {
     [SerializeField] SkullBoss boss;
@@ -36,6 +39,9 @@ public class BossScene : MonoBehaviour
         time += Time.deltaTime;
     }
 
+    /// <summary>
+    /// ボス撃破時に呼ばれる。全Canvasを隠してクリアUIを表示し、タイム・HP・スコアを集計する。
+    /// </summary>
     public void OnClear()
     {
         Canvas[] canvas = GameObject.FindObjectsOfType<Canvas>();

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// インタラクトするとボスシーンへ遷移するトリガー。
+/// </summary>
 public class SceneMoveInteract : MonoBehaviour,IInteractable
 {
     public bool CanInteract => true;

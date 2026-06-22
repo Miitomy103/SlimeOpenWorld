@@ -1,9 +1,10 @@
-
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using static UnityEngine.UI.GridLayoutGroup;
 using InGame;
 
+/// <summary>
+/// スケルトンの戦闘ステート。攻撃範囲まで接近し、武器のAttackStartで攻撃する
+/// </summary>
 [System.Serializable]
 public class SkeletonButtle : IState<Skeleton>
 {

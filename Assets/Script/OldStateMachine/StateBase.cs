@@ -1,6 +1,4 @@
 using InGame;
-using Unity.VisualScripting;
-using UnityEngine;
 
 /// <summary>
 /// 状態の基底クラス

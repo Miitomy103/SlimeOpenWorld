@@ -1,7 +1,8 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーがインタラクト操作できるオブジェクトの共通インターフェース。
+/// </summary>
 public interface IInteractable
 {
     bool CanInteract { get; }

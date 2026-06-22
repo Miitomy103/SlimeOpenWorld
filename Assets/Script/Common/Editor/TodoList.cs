@@ -1,7 +1,10 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using System.Collections.Generic;
 
+/// <summary>
+/// 作業中・残り・完了タスクを管理する簡易Todoリストのエディタウィンドウ。
+/// </summary>
 public class TodoList : EditorWindow
 {
     [System.Serializable]

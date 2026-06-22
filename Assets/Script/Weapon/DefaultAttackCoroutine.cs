@@ -1,6 +1,9 @@
-using Cysharp.Threading.Tasks;
 using System;
+using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// 指定した秒数で攻撃の有効/無効を切り替えるシンプルなIAttackCoroutine実装。
+/// </summary>
 public class DefaultAttackCoroutine :IAttackCoroutine
 {
     private readonly float enableTime;

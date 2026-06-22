@@ -1,8 +1,10 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 対象の頭上に追従するHPバー。プール管理され、Updateで毎フレーム画面座標に追従させる。
+/// </summary>
 public class FollowHPVar : PoolObject,ISlider
 {
     public Transform target;  // 追従する対象

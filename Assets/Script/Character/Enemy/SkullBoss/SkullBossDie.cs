@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using StateMachine;
-using System.Collections.Generic;
 
+/// <summary>
+/// SkullBossの死亡ステート。死亡アニメーションを再生し、以降のステート遷移は行わない
+/// </summary>
 public class SkullBossDie : StateBase<string>
 {
     public const string key = "SkullBossDie";

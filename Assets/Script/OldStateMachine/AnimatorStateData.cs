@@ -1,6 +1,8 @@
 using UnityEngine;
 
-
+/// <summary>
+/// StateTypeとkeyを目印に、Animator上の対応するAnimatorStatemachineを探して保持するクラス。
+/// </summary>
 public class AnimatorStateData
 {
     private readonly StateType stateType;
@@ -14,6 +16,9 @@ public class AnimatorStateData
         this.stateType = stateType;
         this.key = key;
     }
+    /// <summary>
+    /// Animatorにアタッチされた全AnimatorStatemachineの中から、stateTypeとkeyが一致するものを探す。
+    /// </summary>
     public bool GetComponent(Animator animator)
     {
         AnimatorStatemachine[] animatorStatemachines = animator.GetBehaviours<AnimatorStatemachine>();

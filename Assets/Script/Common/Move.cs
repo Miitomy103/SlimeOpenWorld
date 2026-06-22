@@ -1,7 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// カメラ基準の入力方向に向きを合わせつつ、CharacterControllerで移動させるクラス。
+/// </summary>
 [System.Serializable]
-public class Move 
+public class Move
 {
     private Vector3 currentVelocity = Vector3.zero;
     Vector3 velocityRef = Vector3.zero;

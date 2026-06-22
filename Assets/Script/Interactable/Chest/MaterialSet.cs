@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace chest
 {
-    using UnityEngine;
-
+    /// <summary>
+    /// 箱と蓋のレンダラーに同じマテリアルを反映する(エディタ編集時に自動同期)。
+    /// </summary>
     public class MaterialSet : MonoBehaviour
     {
         [SerializeField] private Material material;

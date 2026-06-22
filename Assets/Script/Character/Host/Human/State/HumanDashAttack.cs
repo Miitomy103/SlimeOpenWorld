@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 人間のダッシュ攻撃ステート。慣性を減衰させながら移動し、攻撃終了でIdleへ戻る
+/// </summary>
 [System.Serializable]
 public class HumanDashAttack : IState<HumanHost>
 {

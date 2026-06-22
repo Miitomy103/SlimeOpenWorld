@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 現在最も近いインタラクト対象に対して、操作テキストの表示/非表示を切り替える。
+/// </summary>
 public class InteractTextControl : MonoBehaviour
 {
     [SerializeField] InteractText interactTextPrefab;

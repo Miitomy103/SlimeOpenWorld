@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// ゴブリンのホスト/敵クラス。専用ステートマシンでIdle等の状態を管理する
+/// </summary>
 public class Goblin : EnemyBase
 {
     public StateMachine<Goblin> stateMachine { get; private set; }

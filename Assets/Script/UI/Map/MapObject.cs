@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ミニマップ上に表示するIMapObject(敵・プレイヤー等)を一括管理し、毎フレーム位置を更新する。
+/// </summary>
 public class MapObject : MonoBehaviour
 {
     public RectTransform mapBounds;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトと数値を1組にして保持する汎用データクラス。
+/// </summary>
 [System.Serializable]
 public class ObjectFloatData<T>
 {

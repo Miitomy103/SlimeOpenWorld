@@ -1,7 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// インタラクト対象の近くに表示する操作テキスト。プールして再利用する。
+/// </summary>
 public class InteractText : PoolObject
 {
     [SerializeField] Text uiText;
@@ -27,6 +29,9 @@ public class InteractText : PoolObject
             OnClick();
         }
     }
+    /// <summary>
+    /// 表示する対象のインタラクト内容をセットする。
+    /// </summary>
     public void SetText(IInteractable interactable,GameObject p)
     {
         this.interactable = interactable;

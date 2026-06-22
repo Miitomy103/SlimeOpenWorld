@@ -1,6 +1,9 @@
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// 馬のホストクラス。乗っ取りが終わるとPossessHorseを残して非アクティブ化する
+/// </summary>
 public class HorseHost : HostBase
 {
     public StateMachine<HorseHost> stateMachine;

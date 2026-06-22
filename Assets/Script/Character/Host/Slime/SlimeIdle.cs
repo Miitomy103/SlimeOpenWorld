@@ -1,7 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using InGame;
 
+/// <summary>
+/// スライムの待機ステート。入力に応じてMove/Aim/Attackへ遷移する
+/// </summary>
 [System.Serializable]
 public class SlimeIdle : IState<SlimeHost>
 {

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// カメラ(またはmoveReference)基準の入力からCharacterControllerを動かすクラス。重力も簡易的に処理する。
+/// </summary>
 public class Movement
 {
     readonly Transform target;

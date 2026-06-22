@@ -1,12 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 // ================================================================================
 // Quest.cs - クエストの実行時クラス
 // ================================================================================
 
+/// <summary>
+/// QuestDataを元にした1クエストの実行時インスタンス。進行状況・状態・タイマーを管理する。
+/// </summary>
 public class Quest
 {
     public QuestData data;

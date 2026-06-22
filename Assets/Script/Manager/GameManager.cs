@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
         dieUI.SetActive(true);
         StartCoroutine(DieCoroutine());
     }
+    /// <summary>
+    /// 死亡時のフェード処理(タイムスケールを落としつつ画面を暗転)を行い、終了後にリスポーンする。
+    /// </summary>
     IEnumerator DieCoroutine()
     {
         float time = 0f;

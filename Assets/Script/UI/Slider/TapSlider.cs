@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
+/// <summary>
+/// クリック/タップした位置に応じて値を設定できるスライダー(ドラッグにも対応)。
+/// </summary>
 public class TapSlider : MonoBehaviour
 {
     [SerializeField] Image fillRect;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,9 +14,6 @@ public struct PlayerInput
     public InputButton Button0;
     public InputButton Button1;
     public InputButton Button2;
-    /// <summary>
-    /// TKey
-    /// </summary>
     public InputButton Button3;
     public InputButton Interact;
 }
