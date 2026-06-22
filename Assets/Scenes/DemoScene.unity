@@ -33743,6 +33743,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86263e8355f96ba4ab9fdf4e96c2090f, type: 3}
+--- !u!1 &638634093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4810334534605984781, guid: 8fbb81727a2462847afa7c1d36fccc81, type: 3}
+  m_PrefabInstance: {fileID: 7949223869845723908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &638634097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638634093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc345f1f524494469ae04aeb4207f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMapObject
+  icon: {fileID: 1959869774}
+  iconAngleOffset: 0
 --- !u!4 &639497130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4868598521721778, guid: 5c11b6a454fa5fd458d541957f1de507, type: 3}
@@ -108006,7 +108025,7 @@ GameObject:
   - component: {fileID: 1959869776}
   - component: {fileID: 1959869775}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PlayerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117551,6 +117570,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1959869774}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4810334534605984781, guid: 8fbb81727a2462847afa7c1d36fccc81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 638634097}
     - targetCorrespondingSourceObject: {fileID: 521172832739980047, guid: 8fbb81727a2462847afa7c1d36fccc81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 521989926}

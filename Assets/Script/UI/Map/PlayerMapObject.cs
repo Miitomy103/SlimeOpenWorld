@@ -5,6 +5,7 @@ public class PlayerMapObject : MonoBehaviour,IMapObject
     [SerializeField] RectTransform icon;
     [SerializeField] float iconAngleOffset;
     Transform playerTransform;
+    Vector3 prevPosition;
 
     public void Disable()
     {
@@ -55,13 +56,16 @@ public class PlayerMapObject : MonoBehaviour,IMapObject
 
         icon.anchoredPosition = pos;
 
-        Vector3 forward = playerTransform.forward;
-        forward.y = 0f;
-        if (forward.sqrMagnitude <= 0.0001f) return;
+        Vector3 delta = playerTransform.position - prevPosition;
+        prevPosition = playerTransform.position;
+        delta.y = 0f;
 
-        Vector3 rotatedForward = camRotation * forward.normalized;
-        float angle = Mathf.Atan2(rotatedForward.x, rotatedForward.z) * Mathf.Rad2Deg;
-        icon.localEulerAngles = new Vector3(0f, 0f, -angle + iconAngleOffset);
+        if (delta.sqrMagnitude > 0.00001f)
+        {
+            Vector3 rotatedDelta = camRotation * delta.normalized;
+            float angle = Mathf.Atan2(rotatedDelta.x, rotatedDelta.z) * Mathf.Rad2Deg;
+            icon.localEulerAngles = new Vector3(0f, 0f, -angle + iconAngleOffset);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -93,5 +97,6 @@ public class PlayerMapObject : MonoBehaviour,IMapObject
     private void SetPlayerTransform(Transform player)
     {
         playerTransform = player;
+        if (player != null) prevPosition = player.position;
     }
 }
