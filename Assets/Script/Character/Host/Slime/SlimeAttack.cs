@@ -10,7 +10,7 @@ public class SlimeAttack : IState<SlimeHost>
     [SerializeField] float attackDuration = 2f;
     [SerializeField] float trackingDistance = 5f;
 
-    [Header("UŒ‚—Í")]
+    [Header("æ”»æ’ƒåŠ›")]
     [SerializeField] int attackPower = 10;
 
     [SerializeField] OverlapBase detector;

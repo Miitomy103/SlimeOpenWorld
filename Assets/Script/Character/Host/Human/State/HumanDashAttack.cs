@@ -7,7 +7,7 @@ public class HumanDashAttack : IState<HumanHost>
     [SerializeField] WeaponBase weaponBase;
     AnimatorStateData humanAttack;
 
-    public float drag = 2f;         // Šµ«Œ¸Š‚Ì‘¬‚³
+    public float drag = 2f;         // æ…£æ€§æ¸›è¡°ã®é€Ÿã•
     public void DoExit(HumanHost owner)
     {
         if (humanAttack?.state != null)
@@ -37,17 +37,17 @@ public class HumanDashAttack : IState<HumanHost>
         {
             return;
         }
-        // Šµ«‚É‚æ‚éŒ¸‘¬
+        // æ…£æ€§ã«ã‚ˆã‚‹æ¸›é€Ÿ
         owner.currentVelocity = Vector3.Lerp(owner.currentVelocity, Vector3.zero, drag * Time.deltaTime);
 
-        // ˆÚ“®
+        // ç§»å‹•
         owner.controller.Move(owner.currentVelocity * Time.deltaTime);
 
-        // ‘¬“x‚ª‚Ù‚Úƒ[ƒ‚É‚È‚Á‚½‚ç’â~
+        // é€Ÿåº¦ãŒã»ã¼ã‚¼ãƒ­ã«ãªã£ãŸã‚‰åœæ­¢
         if (owner.currentVelocity.sqrMagnitude < 0.01f)
         {
             owner.currentVelocity = Vector3.zero;
-            // •K—v‚È‚çƒXƒe[ƒgØ‚è‘Ö‚¦
+            // å¿…è¦ãªã‚‰ã‚¹ãƒ†ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆ
         }
     }
 

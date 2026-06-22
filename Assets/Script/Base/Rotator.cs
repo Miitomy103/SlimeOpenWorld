@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// オブジェクトを回すクラス
+/// 繧ｪ繝悶ず繧ｧ繧ｯ繝医ｒ蝗槭☆繧ｯ繝ｩ繧ｹ
 /// </summary>
 public class Rotator 
 {

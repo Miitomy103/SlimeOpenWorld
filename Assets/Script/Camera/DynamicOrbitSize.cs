@@ -26,7 +26,7 @@ public class DynamicOrbitBySize : MonoBehaviour
         orbitalFollow = cineCam.GetComponent<CinemachineOrbitalFollow>();
         if (orbitalFollow == null)
         {
-            Debug.LogError("CinemachineCamera �� CinemachineOrbitalFollow ��ǉ����Ă�������");
+            Debug.LogError("CinemachineCamera に CinemachineOrbitalFollow を追加してください");
             return;
         }
 
@@ -59,7 +59,7 @@ public class DynamicOrbitBySize : MonoBehaviour
         float radius = Mathf.Lerp(3f, 8f, size * orbit.radius);
         float height = Mathf.Lerp(1f, 4f, size * orbit.height);
 
-        // ThreeRing Orbit �𒲐�
+        // ThreeRing Orbit を調整
         var orbits = orbitalFollow.Orbits;
         orbits.Top.Height = height * 1.2f;
         orbits.Center.Height = height;
@@ -71,7 +71,7 @@ public class DynamicOrbitBySize : MonoBehaviour
 
         orbitalFollow.Orbits = orbits;
 
-        // TargetOffset �̓^�[�Q�b�g���S����̃I�t�Z�b�g
+        // TargetOffset はターゲット中心からのオフセット
         orbitalFollow.TargetOffset = Vector3.zero;
     }
 }

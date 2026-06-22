@@ -26,7 +26,7 @@ public class SkullPossess : PossessBase,IEnemy
     [SerializeField]float moveSpeed = 5f;
     [SerializeField]float moveTime = 5f;
     float time;
-    //Œ¸‘¬
+    //æ¸›é€Ÿ
     private float deceleration = 0f;
     public override HostBase GetHost()
     {

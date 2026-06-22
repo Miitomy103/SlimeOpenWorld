@@ -30,7 +30,7 @@ public class SkeletonIdle : IState<Skeleton>
             if (owner.agent.isOnNavMesh && owner.agent.isActiveAndEnabled)
             {
 
-                // ƒvƒŒƒCƒ„[‚ÉŒü‚©‚Á‚ÄˆÚ“®
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‘ã‹ã£ã¦ç§»å‹•
                 owner.agent.isStopped = false;
             owner.agent.SetDestination(owner.defaultPosition);
             }

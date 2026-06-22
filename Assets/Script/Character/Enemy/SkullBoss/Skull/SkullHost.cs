@@ -26,12 +26,12 @@ public class SkullHost : HostBase
         Vector3 dir = target.position - transform.position;
         if (dir.sqrMagnitude > 0.001f)
         {
-            // ˆÊ’u‚ğˆÚ“®
+            // ä½ç½®ã‚’ç§»å‹•
             transform.position += dir.normalized * moveSpeed * Time.deltaTime;
 
-            // ‰ñ“]iˆÚ“®•ûŒü‚ÖŠŠ‚ç‚©‚ÉŒü‚­j
+            // å›è»¢ï¼ˆç§»å‹•æ–¹å‘ã¸æ»‘ã‚‰ã‹ã«å‘ãï¼‰
             Quaternion targetRot = Quaternion.LookRotation(dir);
-            targetRot = targetRot * Quaternion.Euler(0f, 180f, 0f); // ­‚µÎ‚ß‚ÉˆÚ“®‚³‚¹‚é
+            targetRot = targetRot * Quaternion.Euler(0f, 180f, 0f); // å°‘ã—æ–œã‚ã«ç§»å‹•ã•ã›ã‚‹
 
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,

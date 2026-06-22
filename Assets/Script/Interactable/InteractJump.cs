@@ -4,7 +4,7 @@ public class InteractJump : MonoBehaviour, IInteractable
 {
     public bool CanInteract => true;
 
-    public string GetInteractText => "ƒWƒƒƒ“ƒv";
+    public string GetInteractText => "ã‚¸ãƒ£ãƒ³ãƒ—";
 
     public string InteractableID => throw new System.NotImplementedException();
 

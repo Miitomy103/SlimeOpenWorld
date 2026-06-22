@@ -8,10 +8,10 @@ namespace chest
     {
         [SerializeField] private Material material;
 
-        [Header("” ‚Ì•”•ª")]
+        [Header("ç®±ã®éƒ¨åˆ†")]
         [SerializeField] private Renderer boxRenderer;
 
-        [Header("ŠW‚Ì•”•ª")]
+        [Header("è“‹ã®éƒ¨åˆ†")]
         [SerializeField] private Renderer lidRenderer;
 
         private void OnValidate()

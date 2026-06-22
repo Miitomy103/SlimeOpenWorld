@@ -4,7 +4,7 @@ public class SceneMoveInteract : MonoBehaviour,IInteractable
 {
     public bool CanInteract => true;
 
-    public string GetInteractText => "ƒ{ƒX•”‰®";
+    public string GetInteractText => "ãƒœã‚¹éƒ¨å±‹";
 
     [SerializeField] private string interactableID;
     public string InteractableID => interactableID;

@@ -8,7 +8,7 @@ public class Chest : MonoBehaviour,IInteractable
 
     bool canInteract = true;
     public bool CanInteract => canInteract;
-    public string GetInteractText => "ŠJ‚­";
+    public string GetInteractText => "é–‹ã";
 
     [SerializeField] private string interactableID;
     public string InteractableID => interactableID;
@@ -21,7 +21,7 @@ public class Chest : MonoBehaviour,IInteractable
     }
     public void Interact(GameObject player)
     {
-        Debug.Log("ƒ`ƒFƒXƒg‚ğŠJ‚¯‚½I");
+        Debug.Log("ãƒã‚§ã‚¹ãƒˆã‚’é–‹ã‘ãŸï¼");
         animator.SetTrigger("Open");
         canInteract = false;
         GameEvents.ObjectInteracted(interactableID);

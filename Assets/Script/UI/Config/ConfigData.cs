@@ -14,8 +14,8 @@ public class ConfigData
         cvVolume = other.cvVolume;
     }
 
-    [Header("‰¹—Êİ’è")]
-    // ‰¹—Êİ’è
+    [Header("éŸ³é‡è¨­å®š")]
+    // éŸ³é‡è¨­å®š
     [Range(0.0f, 1.0f)]
     public float masterVolume = 1.0f;
     [Range(0.0f, 1.0f)]

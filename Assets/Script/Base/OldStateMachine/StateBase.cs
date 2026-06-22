@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// ó‘Ô‚ÌŠî’êƒNƒ‰ƒX
+/// çŠ¶æ…‹ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 /// </summary>
 public abstract class StateBase : IState<HostBase>
 {

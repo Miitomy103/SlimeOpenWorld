@@ -30,7 +30,7 @@ public class SkeletonBack : IState<Skeleton>
             isAwait = false;
             return;
         }
-        await UniTask.WaitForSeconds(1f); // ­‚µ‘Ò‚Á‚Ä‚©‚çŒã‘ŞŠJn
+        await UniTask.WaitForSeconds(1f); // å°‘ã—å¾…ã£ã¦ã‹ã‚‰å¾Œé€€é–‹å§‹
         isAwait = false; 
     }
 
@@ -59,18 +59,18 @@ public class SkeletonBack : IState<Skeleton>
     public void RotationSet(Skeleton owner)
     {
         Transform target = PlayerController.Instance.HostBase.transform;
-        // --- Œü‚«‚ğƒ^[ƒQƒbƒg‚ÉŒü‚¯‚é ---
+        // --- å‘ãã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«å‘ã‘ã‚‹ ---
         Vector3 direction = (target.position - owner.transform.position).normalized;
-        direction.y = 0; // ã‰º‚Í–³‹
+        direction.y = 0; // ä¸Šä¸‹ã¯ç„¡è¦–
 
         if (direction != Vector3.zero)
         {
-            // ‰ñ“]‚ğƒXƒ€[ƒY‚É
+            // å›è»¢ã‚’ã‚¹ãƒ ãƒ¼ã‚ºã«
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
     }
-    // ‰“‚¢=> true
+    // é ã„=> true
     public bool IsDistance(Skeleton owner)
     {
         Transform host = PlayerController.Instance.HostBase.transform;
